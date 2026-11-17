@@ -61,38 +61,62 @@
       position: relative;
       background: #ffffff;
       border-bottom: 2px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .header-app-brand {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .header-banner-wrap {
+      width: 100%;
+      background: #ffffff;
+      line-height: 0;
       overflow: hidden;
     }
 
     .header-banner {
       width: 100%;
       height: auto;
-      max-height: 130px;
-      object-fit: cover;
+      max-height: none;
+      object-fit: contain;
       display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .header-overlay-bar {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      display: flex;
-      gap: 8px;
-      z-index: 10;
     }
 
     .icon-btn {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 50%;
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      font-size: 0.9rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -805,23 +829,30 @@
 
   <!-- Header Section with user requested image and admin button -->
   <header class="app-header">
-    <div class="header-overlay-bar">
-      <button class="icon-btn" id="leaderboardTopBtn" title="Papan Pendahulu" onclick="openLeaderboard('screenIntro')">
-        🏆
-      </button>
-      <button class="icon-btn" id="soundToggleBtn" title="Bunyi Aktif / Bisu" onclick="toggleSound()">
-        <span id="soundIcon">🔊</span>
-      </button>
-      <button class="icon-btn" id="adminBtn" title="Panel Pentadbir" onclick="promptAdminLogin()">
-        ⚙️
-      </button>
+    <div class="header-top-bar">
+      <div class="header-app-brand">
+        <span>🇲🇾</span> AKADEMI MARA
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="leaderboardTopBtn" title="Papan Pendahulu" onclick="openLeaderboard('screenIntro')">
+          🏆
+        </button>
+        <button class="icon-btn" id="soundToggleBtn" title="Bunyi Aktif / Bisu" onclick="toggleSound()">
+          <span id="soundIcon">🔊</span>
+        </button>
+        <button class="icon-btn" id="adminBtn" title="Panel Pentadbir" onclick="promptAdminLogin()">
+          ⚙️
+        </button>
+      </div>
     </div>
-    <img 
-      src="https://i.postimg.cc/BvdKBjgG/headerbaru.jpg" 
-      alt="Akademi Kecemerlangan MARA Header" 
-      class="header-banner"
-      onerror="this.onerror=null; this.src='https://postimg.cc/sB4xVDqn';"
-    >
+    <div class="header-banner-wrap">
+      <img 
+        src="https://i.postimg.cc/BvdKBjgG/headerbaru.jpg" 
+        alt="Akademi Kecemerlangan MARA Header" 
+        class="header-banner"
+        onerror="this.onerror=null; this.src='https://postimg.cc/sB4xVDqn';"
+      >
+    </div>
   </header>
 
   <!-- Main App Screen Container -->
