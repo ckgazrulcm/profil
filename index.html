@@ -659,24 +659,142 @@
       z-index: 50;
     }
 
-    /* Review list */
-    .review-item {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
+    /* Leaderboard Styles */
+    .leaderboard-header {
+      text-align: center;
+      margin-bottom: 14px;
     }
 
-    .review-q {
-      font-weight: 700;
+    .podium-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 4px 4px;
+    }
+
+    .podium-card {
+      flex: 1;
+      max-width: 125px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px 6px 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .podium-card.rank-1 {
+      background: linear-gradient(180deg, #fef3c7 0%, #ffffff 100%);
+      border: 2px solid #f59e0b;
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
+    }
+
+    .podium-card.rank-2 {
+      background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 100%);
+      border: 2px solid #94a3b8;
+    }
+
+    .podium-card.rank-3 {
+      background: linear-gradient(180deg, #ffedd5 0%, #ffffff 100%);
+      border: 2px solid #ea580c;
+    }
+
+    .podium-badge {
+      font-size: 1.6rem;
+      line-height: 1;
       margin-bottom: 6px;
-      color: #111827;
     }
 
-    .review-ans {
-      font-weight: 600;
+    .podium-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #1f2937;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      margin-bottom: 2px;
+    }
+
+    .podium-group {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+
+    .podium-score {
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 340px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .rank-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #e2e8f0;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .player-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #111827;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-sub {
+      font-size: 0.72rem;
+      color: #6b7280;
+    }
+
+    .player-score-badge {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-left: 8px;
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -688,6 +806,9 @@
   <!-- Header Section with user requested image and admin button -->
   <header class="app-header">
     <div class="header-overlay-bar">
+      <button class="icon-btn" id="leaderboardTopBtn" title="Papan Pendahulu" onclick="openLeaderboard('screenIntro')">
+        🏆
+      </button>
       <button class="icon-btn" id="soundToggleBtn" title="Bunyi Aktif / Bisu" onclick="toggleSound()">
         <span id="soundIcon">🔊</span>
       </button>
@@ -750,6 +871,9 @@
           <span>Mula Kuiz Sekarang</span>
           <span>🎮</span>
         </button>
+        <button type="button" class="btn-secondary" style="margin-top: 10px;" onclick="openLeaderboard('screenIntro')">
+          <span>🏆 Papan Pendahulu (Leaderboard)</span>
+        </button>
       </form>
     </section>
 
@@ -758,7 +882,7 @@
       <div class="quiz-hud">
         <span class="hud-badge" id="hudQuestionNo">Soalan 1 / 10</span>
         <span class="hud-badge" id="hudGroupTag">Kumpulan -</span>
-        <span class="hud-score" id="hudScore">Skor: 0</span>
+        <span class="hud-badge" style="color: var(--primary); font-weight:800;">Akademi MARA</span>
       </div>
 
       <div class="progress-bar-container">
@@ -811,13 +935,61 @@
       </div>
 
       <div class="action-buttons-group">
-        <button class="btn-primary" onclick="restartQuiz()">
+        <button class="btn-primary" onclick="openLeaderboard('screenResult')">
+          <span>Lihat Leaderboard</span>
+          <span>🏆</span>
+        </button>
+        <button class="btn-secondary" onclick="restartQuiz()">
           <span>Main Semula</span>
           <span>🔄</span>
         </button>
-        <button class="btn-secondary" onclick="toggleReviewModal()">
-          <span>Semak Jawapan</span>
-          <span>📝</span>
+      </div>
+    </section>
+
+    <!-- 4. SCREEN: LEADERBOARD -->
+    <section id="screenLeaderboard" class="screen">
+      <div class="leaderboard-header">
+        <div class="hero-badge" style="background:#fef3c7; color:#b45309;">Kedudukan Peserta</div>
+        <h2 class="hero-title" style="font-size: 1.45rem; margin-bottom: 4px;">🏆 Papan Pendahulu</h2>
+        <p class="hero-subtitle" style="margin-bottom: 14px;">Kedudukan markah tertinggi peserta Akademi MARA</p>
+      </div>
+
+      <!-- Filter Kumpulan -->
+      <div class="card-box" style="padding: 10px 14px; margin-bottom: 14px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <label style="font-size:0.8rem; font-weight:700; color:#374151; white-space:nowrap;">Tapis:</label>
+          <select id="leaderboardGroupFilter" class="form-select" style="padding:7px 10px; font-size:0.82rem;" onchange="renderLeaderboardUI()">
+            <option value="ALL">Semua Kumpulan</option>
+            <option value="Kumpulan 1">Kumpulan 1</option>
+            <option value="Kumpulan 2">Kumpulan 2</option>
+            <option value="Kumpulan 3">Kumpulan 3</option>
+            <option value="Kumpulan 4">Kumpulan 4</option>
+            <option value="Kumpulan 5">Kumpulan 5</option>
+            <option value="Kumpulan 6">Kumpulan 6</option>
+            <option value="Kumpulan 7">Kumpulan 7</option>
+            <option value="Kumpulan 8">Kumpulan 8</option>
+            <option value="Kumpulan 9">Kumpulan 9</option>
+            <option value="Kumpulan 10">Kumpulan 10</option>
+            <option value="Kumpulan 11">Kumpulan 11</option>
+            <option value="Kumpulan 12">Kumpulan 12</option>
+            <option value="Kumpulan 13">Kumpulan 13</option>
+            <option value="Kumpulan 14">Kumpulan 14</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Top 3 Podium Area -->
+      <div id="podiumArea" class="podium-container"></div>
+
+      <!-- Leaderboard Scroll List -->
+      <div class="leaderboard-list" id="leaderboardListContainer"></div>
+
+      <div style="display:flex; gap:10px; margin-top: 18px;">
+        <button type="button" class="btn-secondary" style="flex:1;" onclick="reloadLeaderboardData()">
+          <span>Segar Semula 🔄</span>
+        </button>
+        <button type="button" class="btn-primary" style="flex:1; padding:12px;" onclick="exitLeaderboard()">
+          <span>Kembali ↩️</span>
         </button>
       </div>
     </section>
@@ -890,20 +1062,7 @@
   </div>
 </div>
 
-<!-- REVIEW ANSWERS MODAL -->
-<div class="modal-backdrop" id="reviewModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div class="modal-title">
-        <span>📝</span> Semakan Jawapan
-      </div>
-      <button class="modal-close" onclick="toggleReviewModal()">&times;</button>
-    </div>
-    <div class="modal-body" id="reviewListContainer">
-      <!-- Dynamically filled -->
-    </div>
-  </div>
-</div>
+
 
 <script>
 /**
@@ -1158,7 +1317,6 @@ function loadQuestion(index) {
   const q = QUIZ_QUESTIONS[index];
 
   document.getElementById('hudQuestionNo').innerText = `Soalan ${index + 1} / ${QUIZ_QUESTIONS.length}`;
-  document.getElementById('hudScore').innerText = `Skor: ${score}`;
   document.getElementById('progressBar').style.width = `${((index + 1) / QUIZ_QUESTIONS.length) * 100}%`;
 
   document.getElementById('questionText').innerText = `${index + 1}. ${q.question}`;
@@ -1175,7 +1333,7 @@ function loadQuestion(index) {
   });
 }
 
-// 3. SELECT OPTION
+// 3. SELECT OPTION (Jawapan tidak dikeluarkan)
 function handleSelectOption(selectedKey, clickedBtn) {
   if (isAnsweringLocked) return;
   isAnsweringLocked = true;
@@ -1185,29 +1343,17 @@ function handleSelectOption(selectedKey, clickedBtn) {
 
   userAnswers.push({
     questionId: q.id,
-    questionText: q.question,
     selected: selectedKey,
-    correct: q.answer,
     isCorrect: isCorrect
   });
 
   if (isCorrect) {
     score++;
-    clickedBtn.classList.add('correct');
-    playSound('correct');
-  } else {
-    clickedBtn.classList.add('wrong');
-    playSound('wrong');
-    // Highlight correct one
-    const allButtons = document.querySelectorAll('.option-btn');
-    q.options.forEach((opt, idx) => {
-      if (opt.key === q.answer && allButtons[idx]) {
-        allButtons[idx].classList.add('correct');
-      }
-    });
   }
 
-  document.getElementById('hudScore').innerText = `Skor: ${score}`;
+  // Visual selection feedback sahaja tanpa mendedahkan jawapan betul atau salah
+  clickedBtn.classList.add('selected');
+  playSound('tap');
 
   setTimeout(() => {
     currentQuestionIndex++;
@@ -1216,7 +1362,7 @@ function handleSelectOption(selectedKey, clickedBtn) {
     } else {
       finishQuiz();
     }
-  }, 1100);
+  }, 350);
 }
 
 // 4. FINISH QUIZ & SYNC TO GOOGLE SHEETS
@@ -1411,44 +1557,155 @@ function exportCSV() {
   a.click();
 }
 
-// REVIEW ANSWERS
-function toggleReviewModal() {
+// ==========================================
+// LEADERBOARD LOGIC
+// ==========================================
+let previousScreenBeforeLeaderboard = 'screenIntro';
+let cachedLeaderboardData = [];
+
+function openLeaderboard(fromScreen) {
   playSound('tap');
-  const modal = document.getElementById('reviewModal');
-  if (modal.classList.contains('active')) {
-    modal.classList.remove('active');
-  } else {
-    populateReview();
-    modal.classList.add('active');
+  previousScreenBeforeLeaderboard = fromScreen || 'screenIntro';
+  showScreen('screenLeaderboard');
+  loadLeaderboard();
+}
+
+function exitLeaderboard() {
+  playSound('tap');
+  showScreen(previousScreenBeforeLeaderboard);
+}
+
+async function loadLeaderboard() {
+  // Gunakan data storan peranti terlebih dahulu untuk paparan serta-merta
+  cachedLeaderboardData = getStoredRecords();
+  renderLeaderboardUI();
+
+  // Dapatkan data terkini daripada Google Sheets
+  const sheetUrl = getActiveSheetUrl();
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    try {
+      const resp = await fetch(sheetUrl);
+      if (resp.ok) {
+        const json = await resp.json();
+        if (json && json.status === 'success' && Array.isArray(json.data)) {
+          cachedLeaderboardData = json.data;
+          localStorage.setItem(STORAGE_KEY_RECORDS, JSON.stringify(cachedLeaderboardData));
+          renderLeaderboardUI();
+          renderAdminTable();
+        }
+      }
+    } catch (e) {
+      console.log("Menggunakan data storan peranti untuk papan pendahulu", e);
+    }
   }
 }
 
-function populateReview() {
-  const container = document.getElementById('reviewListContainer');
-  if (userAnswers.length === 0) {
-    container.innerHTML = "<p>Tiada data semakan soalan.</p>";
+function reloadLeaderboardData() {
+  playSound('tap');
+  const listEl = document.getElementById('leaderboardListContainer');
+  if (listEl) {
+    listEl.innerHTML = `<div style="text-align:center; padding:24px; color:#6b7280; font-size:0.85rem;">Memuatkan data terkini daripada pangkalan data...</div>`;
+  }
+  loadLeaderboard();
+}
+
+function renderLeaderboardUI() {
+  const filterEl = document.getElementById('leaderboardGroupFilter');
+  const filterVal = filterEl ? filterEl.value : 'ALL';
+  let list = [...cachedLeaderboardData];
+
+  if (filterVal !== 'ALL') {
+    list = list.filter(item => item.group === filterVal);
+  }
+
+  // Susun mengikut markah tertinggi
+  list.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
+
+  const podiumEl = document.getElementById('podiumArea');
+  const listEl = document.getElementById('leaderboardListContainer');
+
+  if (list.length === 0) {
+    if (podiumEl) podiumEl.innerHTML = '';
+    if (listEl) {
+      listEl.innerHTML = `
+        <div style="text-align:center; padding:35px 10px; color:#9ca3af; font-size:0.85rem;">
+          Belum ada rekod peserta bagi kumpulan ini.
+        </div>
+      `;
+    }
     return;
   }
 
-  container.innerHTML = userAnswers.map((item, idx) => {
-    const q = QUIZ_QUESTIONS.find(x => x.id === item.questionId);
-    const correctOpt = q.options.find(o => o.key === item.correct);
-    const userOpt = q.options.find(o => o.key === item.selected);
+  // Paparan Podium Top 3
+  const top1 = list[0];
+  const top2 = list[1];
+  const top3 = list[2];
 
-    return `
-      <div class="review-item" style="border-left: 4px solid ${item.isCorrect ? '#10b981' : '#ef4444'};">
-        <div class="review-q">${idx + 1}. ${item.questionText}</div>
-        <div class="review-ans" style="color: ${item.isCorrect ? '#059669' : '#dc2626'};">
-          Jawapan Anda: (${item.selected.toUpperCase()}) ${userOpt ? userOpt.text : '-'} ${item.isCorrect ? '✅' : '❌'}
-        </div>
-        ${!item.isCorrect ? `
-          <div style="color: #059669; font-weight:600; font-size: 0.8rem; margin-top: 4px;">
-            Jawapan Betul: (${item.correct.toUpperCase()}) ${correctOpt ? correctOpt.text : '-'}
-          </div>
-        ` : ''}
+  let podiumHtml = '';
+
+  // Tempat Ke-2 (Kiri)
+  if (top2) {
+    podiumHtml += `
+      <div class="podium-card rank-2">
+        <div class="podium-badge">🥈</div>
+        <div class="podium-name" title="${top2.name}">${top2.name}</div>
+        <div class="podium-group">${top2.group}</div>
+        <div class="podium-score">${top2.score}/${top2.total || 10}</div>
       </div>
     `;
-  }).join('');
+  } else {
+    podiumHtml += `<div class="podium-card rank-2" style="opacity:0.35;"><div class="podium-badge">🥈</div><div class="podium-name">-</div></div>`;
+  }
+
+  // Tempat Pertama (Tengah)
+  if (top1) {
+    podiumHtml += `
+      <div class="podium-card rank-1">
+        <div class="podium-badge">👑</div>
+        <div class="podium-name" title="${top1.name}">${top1.name}</div>
+        <div class="podium-group">${top1.group}</div>
+        <div class="podium-score">${top1.score}/${top1.total || 10}</div>
+      </div>
+    `;
+  }
+
+  // Tempat Ke-3 (Kanan)
+  if (top3) {
+    podiumHtml += `
+      <div class="podium-card rank-3">
+        <div class="podium-badge">🥉</div>
+        <div class="podium-name" title="${top3.name}">${top3.name}</div>
+        <div class="podium-group">${top3.group}</div>
+        <div class="podium-score">${top3.score}/${top3.total || 10}</div>
+      </div>
+    `;
+  } else {
+    podiumHtml += `<div class="podium-card rank-3" style="opacity:0.35;"><div class="podium-badge">🥉</div><div class="podium-name">-</div></div>`;
+  }
+
+  if (podiumEl) podiumEl.innerHTML = podiumHtml;
+
+  // Paparan Senarai Keseluruhan
+  if (listEl) {
+    listEl.innerHTML = list.map((item, index) => {
+      const rank = index + 1;
+      let rankIcon = rank;
+      if (rank === 1) rankIcon = '🥇';
+      else if (rank === 2) rankIcon = '🥈';
+      else if (rank === 3) rankIcon = '🥉';
+
+      return `
+        <div class="leaderboard-item">
+          <div class="rank-pill">${rankIcon}</div>
+          <div class="player-details">
+            <div class="player-name">${item.name}</div>
+            <div class="player-sub">${item.group} • ${item.salaryId}</div>
+          </div>
+          <div class="player-score-badge">${item.score}/${item.total || 10}</div>
+        </div>
+      `;
+    }).join('');
+  }
 }
 
 function restartQuiz() {

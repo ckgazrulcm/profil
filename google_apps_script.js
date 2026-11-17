@@ -103,5 +103,42 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("MARA Quiz API is Active & Ready.");
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = sheet.getDataRange().getValues();
+    
+    if (data.length <= 1) {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "success",
+        data: []
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var records = [];
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      if (row[1]) { // Nama wujud
+        records.push({
+          timestamp: row[0],
+          name: row[1],
+          salaryId: row[2],
+          group: row[3],
+          score: Number(row[4]) || 0,
+          total: Number(row[5]) || 10,
+          percentage: row[6] || ""
+        });
+      }
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      data: records
+    })).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
 }
