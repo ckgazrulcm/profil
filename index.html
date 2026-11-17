@@ -362,8 +362,13 @@
     }
 
     .option-btn.selected {
-      border-color: var(--secondary);
-      background-color: #eff6ff;
+      border-color: var(--primary);
+      background-color: #fff1f2;
+      box-shadow: 0 0 0 2px rgba(194, 24, 7, 0.25);
+    }
+    .option-btn.selected .option-letter {
+      background: var(--primary);
+      color: #ffffff;
     }
 
     .option-btn.correct {
@@ -927,6 +932,11 @@
       <div class="options-grid" id="optionsContainer">
         <!-- Option buttons dynamically rendered -->
       </div>
+
+      <button type="button" id="btnSubmitAnswer" class="btn-primary" style="margin-top: 10px; opacity: 0.5; cursor: not-allowed;" onclick="handleSubmitAnswer()" disabled>
+        <span id="btnSubmitText">Hantar Jawapan</span>
+        <span>➡️</span>
+      </button>
     </section>
 
     <!-- 3. SCREEN: RESULTS -->
@@ -1342,9 +1352,12 @@ function handleStartQuiz(e) {
   showScreen('screenQuiz');
 }
 
+let selectedOptionKey = null;
+
 // 2. LOAD QUESTION
 function loadQuestion(index) {
   isAnsweringLocked = false;
+  selectedOptionKey = null;
   const q = QUIZ_QUESTIONS[index];
 
   document.getElementById('hudQuestionNo').innerText = `Soalan ${index + 1} / ${QUIZ_QUESTIONS.length}`;
@@ -1362,19 +1375,67 @@ function loadQuestion(index) {
     btn.onclick = () => handleSelectOption(opt.key, btn);
     container.appendChild(btn);
   });
+
+  // Reset status butang Hantar Jawapan
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  const btnSubmitText = document.getElementById('btnSubmitText');
+  if (btnSubmit && btnSubmitText) {
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = '0.5';
+    btnSubmit.style.cursor = 'not-allowed';
+
+    if (index === QUIZ_QUESTIONS.length - 1) {
+      btnSubmitText.innerText = "Hantar & Tamat Kuiz";
+    } else {
+      btnSubmitText.innerText = "Hantar Jawapan";
+    }
+  }
 }
 
-// 3. SELECT OPTION (Jawapan tidak dikeluarkan)
+// 3. SELECT OPTION (Memilih pilihan tanpa terus beralih ke soalan seterusnya)
 function handleSelectOption(selectedKey, clickedBtn) {
   if (isAnsweringLocked) return;
+
+  selectedOptionKey = selectedKey;
+  playSound('tap');
+
+  // Bersihkan kelas selected daripada semua pilihan dan tandakan pilihan yang dipilih
+  const allButtons = document.querySelectorAll('.option-btn');
+  allButtons.forEach(btn => btn.classList.remove('selected'));
+  clickedBtn.classList.add('selected');
+
+  // Aktifkan butang Hantar Jawapan
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  if (btnSubmit) {
+    btnSubmit.disabled = false;
+    btnSubmit.style.opacity = '1';
+    btnSubmit.style.cursor = 'pointer';
+  }
+}
+
+// 4. SUBMIT ANSWER (Hanya beralih bila pengguna menekan butang Hantar)
+function handleSubmitAnswer() {
+  if (isAnsweringLocked) return;
+
+  if (!selectedOptionKey) {
+    alert("Sila pilih satu jawapan terlebih dahulu sebelum menekan butang Hantar.");
+    return;
+  }
+
   isAnsweringLocked = true;
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = '0.6';
+    btnSubmit.style.cursor = 'not-allowed';
+  }
 
   const q = QUIZ_QUESTIONS[currentQuestionIndex];
-  const isCorrect = (selectedKey === q.answer);
+  const isCorrect = (selectedOptionKey === q.answer);
 
   userAnswers.push({
     questionId: q.id,
-    selected: selectedKey,
+    selected: selectedOptionKey,
     isCorrect: isCorrect
   });
 
@@ -1382,18 +1443,14 @@ function handleSelectOption(selectedKey, clickedBtn) {
     score++;
   }
 
-  // Visual selection feedback sahaja tanpa mendedahkan jawapan betul atau salah
-  clickedBtn.classList.add('selected');
   playSound('tap');
 
-  setTimeout(() => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
-      loadQuestion(currentQuestionIndex);
-    } else {
-      finishQuiz();
-    }
-  }, 350);
+  currentQuestionIndex++;
+  if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
+    loadQuestion(currentQuestionIndex);
+  } else {
+    finishQuiz();
+  }
 }
 
 // 4. FINISH QUIZ & SYNC TO GOOGLE SHEETS
