@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kuiz Interaktif - Akademi Kecemerlangan MARA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c21807; /* MARA Corporate Red tone */
+      --primary-dark: #8e0e03;
+      --primary-light: #ff5247;
+      --secondary: #1e3a8a; /* Deep Navy */
+      --accent: #f59e0b; /* Gold/Amber */
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --radius: 18px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      background-image: radial-gradient(at 50% 0%, #1e293b 0%, #0f172a 100%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* Mobile Device Frame Container */
+    .mobile-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background-color: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      overflow-x: hidden;
+    }
+
+    /* Header Banner */
+    .app-header {
+      width: 100%;
+      position: relative;
+      background: #ffffff;
+      border-bottom: 2px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .header-banner {
+      width: 100%;
+      height: auto;
+      max-height: 130px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .header-overlay-bar {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .icon-btn:hover {
+      transform: scale(1.08);
+      background: #ffffff;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Main View Area */
+    .main-content {
+      flex: 1;
+      padding: 20px 18px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screens Management */
+    .screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Screen: Intro & Registration */
+    .hero-badge {
+      align-self: center;
+      background: #fee2e2;
+      color: var(--primary-dark);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #111827;
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 10px;
+    }
+
+    .card-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 13px 15px;
+      font-size: 0.95rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 12px;
+      background-color: #ffffff;
+      color: #111827;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(194, 24, 7, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 10px 15px -3px rgba(194, 24, 7, 0.35);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+      box-shadow: 0 5px 8px -2px rgba(194, 24, 7, 0.3);
+    }
+
+    /* Screen: Game / Quiz */
+    .quiz-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 6px 4px;
+    }
+
+    .hud-badge {
+      background: #f3f4f6;
+      color: #374151;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid #e5e7eb;
+    }
+
+    .hud-score {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.92rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 20px;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .question-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+      border: 1.5px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 20px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .question-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.45;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      position: relative;
+      background: #ffffff;
+      border: 1.8px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 13px 14px 13px 48px;
+      text-align: left;
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1.35;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background-color: #fff8f8;
+      transform: translateY(-2px);
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .option-letter {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: #f3f4f6;
+      color: #4b5563;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .option-btn.selected {
+      border-color: var(--secondary);
+      background-color: #eff6ff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success) !important;
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+      animation: pulseGreen 0.4s ease;
+    }
+    .option-btn.correct .option-letter {
+      background: var(--success);
+      color: #ffffff;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger) !important;
+      background-color: #fef2f2 !important;
+      color: #991b1b !important;
+      animation: shake 0.4s ease;
+    }
+    .option-btn.wrong .option-letter {
+      background: var(--danger);
+      color: #ffffff;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    /* Screen: Results */
+    .result-hero {
+      text-align: center;
+      padding: 16px 0 20px;
+    }
+
+    .trophy-icon {
+      font-size: 4rem;
+      animation: bounce 1.2s infinite alternate;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-12px); }
+    }
+
+    .result-score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      margin: 0 auto 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 24px -6px rgba(194, 24, 7, 0.4);
+    }
+
+    .score-number {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+
+    .user-info-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .info-value {
+      color: #1e293b;
+      font-weight: 700;
+    }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .sync-status.success {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .sync-status.pending {
+      background: #fffbeb;
+      color: #b45309;
+    }
+
+    .action-buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #374151;
+      border: 1.5px solid #d1d5db;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 14px;
+      padding: 13px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:active {
+      background-color: #f3f4f6;
+    }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      padding: 14px;
+      background-color: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4b5563;
+      letter-spacing: 0.3px;
+    }
+
+    .app-footer span {
+      color: var(--primary);
+    }
+
+    /* Modal / Admin Panel */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      animation: modalPop 0.25s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #6b7280;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 18px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .admin-danger-box {
+      background: #fef2f2;
+      border: 1.5px solid #fecaca;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .admin-danger-box h4 {
+      color: #991b1b;
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .admin-danger-box p {
+      color: #7f1d1d;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .admin-table th, .admin-table td {
+      border: 1px solid #e5e7eb;
+      padding: 8px 6px;
+      text-align: left;
+    }
+
+    .admin-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Review list */
+    .review-item {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .review-ans {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-container">
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Header Section with user requested image and admin button -->
+  <header class="app-header">
+    <div class="header-overlay-bar">
+      <button class="icon-btn" id="soundToggleBtn" title="Bunyi Aktif / Bisu" onclick="toggleSound()">
+        <span id="soundIcon">🔊</span>
+      </button>
+      <button class="icon-btn" id="adminBtn" title="Panel Pentadbir" onclick="promptAdminLogin()">
+        ⚙️
+      </button>
+    </div>
+    <img 
+      src="https://i.postimg.cc/BvdKBjgG/headerbaru.jpg" 
+      alt="Akademi Kecemerlangan MARA Header" 
+      class="header-banner"
+      onerror="this.onerror=null; this.src='https://postimg.cc/sB4xVDqn';"
+    >
+  </header>
+
+  <!-- Main App Screen Container -->
+  <main class="main-content">
+    
+    <!-- 1. SCREEN: REGISTRATION & INTRO -->
+    <section id="screenIntro" class="screen active">
+      <div class="hero-badge">Kuiz Interaktif Perdana</div>
+      <h1 class="hero-title">Ujian Pengetahuan & Nilai MARA</h1>
+      <p class="hero-subtitle">Sila lengkapkan maklumat diri sebelum memulakan sesi kuiz.</p>
+
+      <form id="regForm" onsubmit="handleStartQuiz(event)">
+        <div class="card-box">
+          <div class="form-group">
+            <label class="form-label" for="userName">Nama Penuh</label>
+            <input type="text" id="userName" class="form-input" placeholder="Contoh: Ahmad bin Razak" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userSalaryId">No. Gaji</label>
+            <input type="text" id="userSalaryId" class="form-input" placeholder="Contoh: M12345" required pattern="[A-Za-z0-9\-]+" title="Nombor gaji anda">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userGroup">Kumpulan</label>
+            <select id="userGroup" class="form-select" required>
+              <option value="" disabled selected>-- Pilih Kumpulan (1 - 14) --</option>
+              <option value="Kumpulan 1">Kumpulan 1</option>
+              <option value="Kumpulan 2">Kumpulan 2</option>
+              <option value="Kumpulan 3">Kumpulan 3</option>
+              <option value="Kumpulan 4">Kumpulan 4</option>
+              <option value="Kumpulan 5">Kumpulan 5</option>
+              <option value="Kumpulan 6">Kumpulan 6</option>
+              <option value="Kumpulan 7">Kumpulan 7</option>
+              <option value="Kumpulan 8">Kumpulan 8</option>
+              <option value="Kumpulan 9">Kumpulan 9</option>
+              <option value="Kumpulan 10">Kumpulan 10</option>
+              <option value="Kumpulan 11">Kumpulan 11</option>
+              <option value="Kumpulan 12">Kumpulan 12</option>
+              <option value="Kumpulan 13">Kumpulan 13</option>
+              <option value="Kumpulan 14">Kumpulan 14</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Mula Kuiz Sekarang</span>
+          <span>🎮</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- 2. SCREEN: QUIZ GAMEPLAY -->
+    <section id="screenQuiz" class="screen">
+      <div class="quiz-hud">
+        <span class="hud-badge" id="hudQuestionNo">Soalan 1 / 10</span>
+        <span class="hud-badge" id="hudGroupTag">Kumpulan -</span>
+        <span class="hud-score" id="hudScore">Skor: 0</span>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+
+      <div class="question-card">
+        <h2 class="question-title" id="questionText">Memuat soalan...</h2>
+      </div>
+
+      <div class="options-grid" id="optionsContainer">
+        <!-- Option buttons dynamically rendered -->
+      </div>
+    </section>
+
+    <!-- 3. SCREEN: RESULTS -->
+    <section id="screenResult" class="screen">
+      <div class="result-hero">
+        <div class="trophy-icon" id="resultEmoji">🏆</div>
+        <h2 class="hero-title" id="resultGreeting">Tahniah!</h2>
+        <p class="hero-subtitle" id="resultMessage">Kuiz telah berjaya diselesaikan dengan cemerlang.</p>
+
+        <div class="result-score-circle">
+          <span class="score-number" id="finalScoreVal">10</span>
+          <span class="score-total">/ 10 Soalan</span>
+        </div>
+      </div>
+
+      <div class="user-info-card">
+        <div class="info-row">
+          <span class="info-label">Nama:</span>
+          <span class="info-value" id="resName">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">No. Gaji:</span>
+          <span class="info-value" id="resNoGaji">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Kumpulan:</span>
+          <span class="info-value" id="resGroup">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Masa Selesai:</span>
+          <span class="info-value" id="resTime">-</span>
+        </div>
+      </div>
+
+      <div id="syncStatusBox" class="sync-status success">
+        <span>✅ Data disimpan ke pangkalan data Google Sheets</span>
+      </div>
+
+      <div class="action-buttons-group">
+        <button class="btn-primary" onclick="restartQuiz()">
+          <span>Main Semula</span>
+          <span>🔄</span>
+        </button>
+        <button class="btn-secondary" onclick="toggleReviewModal()">
+          <span>Semak Jawapan</span>
+          <span>📝</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer requested by user -->
+  <footer class="app-footer">
+    Akademi Kecemerlangan <span>MARA</span>
+  </footer>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-backdrop" id="adminModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">
+        <span>⚙️</span> Panel Pentadbir
+      </div>
+      <button class="modal-close" onclick="closeAdminModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      
+      <!-- Danger Zone for Deleting Database -->
+      <div class="admin-danger-box">
+        <h4>Tindakan Kritikal: Padam Database</h4>
+        <p>Tindakan ini akan memadam semua rekod peserta daripada pangkalan data (Google Sheets & storan peranti).</p>
+        <button class="btn-danger" onclick="handleDeleteDatabase()">
+          <span>🗑️ Padam Semua Rekod Database</span>
+        </button>
+      </div>
+
+      <!-- Google Sheets Connection Setup -->
+      <div style="margin-bottom: 20px;">
+        <label class="form-label">Google Sheets Web App URL:</label>
+        <div style="display:flex; gap:6px;">
+          <input type="url" id="sheetUrlInput" class="form-input" style="font-size:0.8rem; padding:8px;" placeholder="https://script.google.com/macros/s/.../exec">
+          <button class="btn-secondary" style="width:auto; padding:8px 12px; font-size:0.8rem;" onclick="saveSheetUrl()">Simpan</button>
+        </div>
+        <p style="font-size:0.75rem; color:#6b7280; margin-top:4px;">
+          *Nota: Masukkan URL Web App Google Apps Script jika ingin menyambung terus ke fail Google Sheet anda.
+        </p>
+      </div>
+
+      <!-- Record list table -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size: 0.95rem; font-weight:700;">Senarai Rekod Peserta (<span id="recordCount">0</span>)</h4>
+        <button onclick="exportCSV()" class="btn-secondary" style="width:auto; padding:4px 10px; font-size:0.75rem;">Muat Turun CSV</button>
+      </div>
+
+      <div style="max-height: 220px; overflow-y: auto; margin-top: 8px;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>No Gaji</th>
+              <th>Kump</th>
+              <th>Skor</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <tr>
+              <td colspan="4" style="text-align: center; color:#9ca3af;">Tiada rekod tersimpan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW ANSWERS MODAL -->
+<div class="modal-backdrop" id="reviewModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">
+        <span>📝</span> Semakan Jawapan
+      </div>
+      <button class="modal-close" onclick="toggleReviewModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="reviewListContainer">
+      <!-- Dynamically filled -->
+    </div>
+  </div>
+</div>
+
+<script>
+/**
+ * 10 Soalan & Skema Jawapan Rasmi
+ */
+const QUIZ_QUESTIONS = [
+  {
+    id: 1,
+    question: "Manakah antara berikut bukan tingkah laku nilai amanah?",
+    options: [
+      { key: "a", text: "Membelanjakan harta awam mengikut peraturan" },
+      { key: "b", text: "Tidak jujur ketika menjalankan tugas" },
+      { key: "c", text: "Menyiapkan kerja mengikut tempoh yang ditetapkan" },
+      { key: "d", text: "Menggunakan masa bekerja dengan sebaik mungkin" }
+    ],
+    answer: "b"
+  },
+  {
+    id: 2,
+    question: "Sistem pemerintahan yang diamalkan di Malaysia adalah",
+    options: [
+      { key: "a", text: "Republik" },
+      { key: "b", text: "Komunis" },
+      { key: "c", text: "Demokrasi Berparlimen" },
+      { key: "d", text: "Monarki" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 3,
+    question: "3 Sistem pemerintahan Negara Malaysia terdiri daripada 3 badan utama iaitu",
+    options: [
+      { key: "a", text: "Perundangan, Ketenteraan, Kehakiman" },
+      { key: "b", text: "Ketenteraan, Kehakiman, Eksekutif" },
+      { key: "c", text: "Perundangan, Kehakiman, Eksekutif" },
+      { key: "d", text: "Eksekutif, Ketenteraan, Perundangan" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 4,
+    question: "Perkara 153 Perlembagaan Persekutuan memperuntukkan",
+    options: [
+      { key: "a", text: "Layanan sama rata persekutuan" },
+      { key: "b", text: "Kedudukan istimewa Bumiputera Sabah dan Sarawak" },
+      { key: "c", text: "Tanggungjawab DYMM Yang Di-Pertuan Agong memelihara kedudukan keistimewaan orang Melayu dan bumiputera" },
+      { key: "d", text: "Pemeliharaan kedudukan dari segi Perlembagaan Sabah dan Sarawak" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 5,
+    question: "Bilakah tarikh pembentukan Malaysia?",
+    options: [
+      { key: "a", text: "31 Ogos 1957" },
+      { key: "b", text: "13 Mei 1969" },
+      { key: "c", text: "16 September 1963" },
+      { key: "d", text: "31 Ogos 1970" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 6,
+    question: "Rukun Negara diperkenalkan pada…",
+    options: [
+      { key: "a", text: "31 Ogos 1980" },
+      { key: "b", text: "31 Ogos 1970" },
+      { key: "c", text: "16 September 1963" },
+      { key: "d", text: "31 Ogos 1957" }
+    ],
+    answer: "b"
+  },
+  {
+    id: 7,
+    question: "Ketua Negara bagi Malaysia adalah",
+    options: [
+      { key: "a", text: "Yang Di-Pertuan Agong" },
+      { key: "b", text: "Perdana Menteri" },
+      { key: "c", text: "Setiausaha Parlimen" },
+      { key: "d", text: "Ketua Setiausaha Negara" }
+    ],
+    answer: "a"
+  },
+  {
+    id: 8,
+    question: "Kesan umum rasuah terhadap negara ialah:",
+    options: [
+      { key: "a", text: "Merapatkan jurang antara yang kaya dengan yang miskin" },
+      { key: "b", text: "Meningkatkan pertumbuhan ekonomi" },
+      { key: "c", text: "Menjejaskan kelicinan dan kecekapan pentadbiran kerajaan" },
+      { key: "d", text: "Menurunkan kadar jenayah yang boleh mengancam keselamatan negara, nyawa dan harta benda" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 9,
+    question: "Apakah tema Hari Kemerdekaan dan Hari Malaysia pada tahun 2026?",
+    options: [
+      { key: "a", text: "Malaysia MADANI, Rakyat Disantuni" },
+      { key: "b", text: "Malaysia MADANI, Jiwa Merdeka" },
+      { key: "c", text: "Malaysia MADANI, Kesejahteraan Dinikmati" },
+      { key: "d", text: "Malaysia MADANI: Tekad Perpaduan Penuhi Harapan" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 10,
+    question: "Berikut adalah 6 Nilai Teras MADANI kecuali:",
+    options: [
+      { key: "a", text: "Kemampanan" },
+      { key: "b", text: "Kesejahteraan" },
+      { key: "c", text: "Kemakmuran" },
+      { key: "d", text: "Hormat" }
+    ],
+    answer: "c"
+  }
+];
+
+// App State
+let currentUser = {
+  name: "",
+  salaryId: "",
+  group: ""
+};
+
+let currentQuestionIndex = 0;
+let userAnswers = []; // stores user selections
+let score = 0;
+let soundEnabled = true;
+let isAnsweringLocked = false;
+
+// Google Sheets URL configuration (Stored in localStorage)
+const STORAGE_KEY_RECORDS = "akm_quiz_records_db";
+const STORAGE_KEY_SHEET_URL = "akm_google_sheet_webapp_url";
+
+// Web Audio API Synthesizer for high performance mobile sound
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      audioCtx = new AudioContext();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playSound(type) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+
+    if (type === 'tap') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, now);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'correct') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, now); // C5
+      osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === 'wrong') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now); // A3
+      osc.frequency.setValueAtTime(160, now + 0.12);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === 'fanfare') {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.type = 'triangle';
+        o.frequency.setValueAtTime(freq, now + idx * 0.12);
+        g.gain.setValueAtTime(0.2, now + idx * 0.12);
+        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.3);
+        o.start(now + idx * 0.12);
+        o.stop(now + idx * 0.12 + 0.3);
+      });
+    }
+  } catch (e) {
+    console.log("Audio not supported or blocked", e);
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('soundIcon').innerText = soundEnabled ? '🔊' : '🔇';
+}
+
+// Navigation between views
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 1. START QUIZ
+function handleStartQuiz(e) {
+  e.preventDefault();
+  playSound('tap');
+
+  const name = document.getElementById('userName').value.trim();
+  const salaryId = document.getElementById('userSalaryId').value.trim();
+  const group = document.getElementById('userGroup').value;
+
+  if (!name || !salaryId || !group) {
+    alert("Sila lengkapkan semua maklumat sebelum memulakan.");
+    return;
+  }
+
+  currentUser = { name, salaryId, group };
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  score = 0;
+
+  document.getElementById('hudGroupTag').innerText = group;
+  loadQuestion(0);
+  showScreen('screenQuiz');
+}
+
+// 2. LOAD QUESTION
+function loadQuestion(index) {
+  isAnsweringLocked = false;
+  const q = QUIZ_QUESTIONS[index];
+
+  document.getElementById('hudQuestionNo').innerText = `Soalan ${index + 1} / ${QUIZ_QUESTIONS.length}`;
+  document.getElementById('hudScore').innerText = `Skor: ${score}`;
+  document.getElementById('progressBar').style.width = `${((index + 1) / QUIZ_QUESTIONS.length) * 100}%`;
+
+  document.getElementById('questionText').innerText = `${index + 1}. ${q.question}`;
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${opt.key.toUpperCase()}</span> ${opt.text}`;
+    btn.onclick = () => handleSelectOption(opt.key, btn);
+    container.appendChild(btn);
+  });
+}
+
+// 3. SELECT OPTION
+function handleSelectOption(selectedKey, clickedBtn) {
+  if (isAnsweringLocked) return;
+  isAnsweringLocked = true;
+
+  const q = QUIZ_QUESTIONS[currentQuestionIndex];
+  const isCorrect = (selectedKey === q.answer);
+
+  userAnswers.push({
+    questionId: q.id,
+    questionText: q.question,
+    selected: selectedKey,
+    correct: q.answer,
+    isCorrect: isCorrect
+  });
+
+  if (isCorrect) {
+    score++;
+    clickedBtn.classList.add('correct');
+    playSound('correct');
+  } else {
+    clickedBtn.classList.add('wrong');
+    playSound('wrong');
+    // Highlight correct one
+    const allButtons = document.querySelectorAll('.option-btn');
+    q.options.forEach((opt, idx) => {
+      if (opt.key === q.answer && allButtons[idx]) {
+        allButtons[idx].classList.add('correct');
+      }
+    });
+  }
+
+  document.getElementById('hudScore').innerText = `Skor: ${score}`;
+
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
+      loadQuestion(currentQuestionIndex);
+    } else {
+      finishQuiz();
+    }
+  }, 1100);
+}
+
+// 4. FINISH QUIZ & SYNC TO GOOGLE SHEETS
+function finishQuiz() {
+  playSound('fanfare');
+  launchConfetti();
+
+  const finalScoreEl = document.getElementById('finalScoreVal');
+  finalScoreEl.innerText = score;
+
+  const now = new Date();
+  const timeFormatted = now.toLocaleDateString('ms-MY') + ' ' + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+
+  document.getElementById('resName').innerText = currentUser.name;
+  document.getElementById('resNoGaji').innerText = currentUser.salaryId;
+  document.getElementById('resGroup').innerText = currentUser.group;
+  document.getElementById('resTime').innerText = timeFormatted;
+
+  if (score >= 8) {
+    document.getElementById('resultEmoji').innerText = '🏆';
+    document.getElementById('resultGreeting').innerText = 'Luar Biasa!';
+    document.getElementById('resultMessage').innerText = 'Prestasi anda amat cemerlang dalam menguasai nilai & perlembagaan!';
+  } else if (score >= 5) {
+    document.getElementById('resultEmoji').innerText = '🎖️';
+    document.getElementById('resultGreeting').innerText = 'Tahniah!';
+    document.getElementById('resultMessage').innerText = 'Keputusan yang baik. Teruskan usaha meningkatkan kecemerlangan!';
+  } else {
+    document.getElementById('resultEmoji').innerText = '📚';
+    document.getElementById('resultGreeting').innerText = 'Teruskan Berusaha!';
+    document.getElementById('resultMessage').innerText = 'Jadikan pengalaman ini dorongan untuk mendalami nilai MARA.';
+  }
+
+  // Save to Database
+  saveSubmissionRecord({
+    timestamp: timeFormatted,
+    name: currentUser.name,
+    salaryId: currentUser.salaryId,
+    group: currentUser.group,
+    score: score,
+    total: QUIZ_QUESTIONS.length,
+    percentage: Math.round((score / QUIZ_QUESTIONS.length) * 100) + '%'
+  });
+
+  showScreen('screenResult');
+}
+
+// 5. DATABASE OPERATIONS (GOOGLE SHEETS & LOCAL)
+function getStoredRecords() {
+  const data = localStorage.getItem(STORAGE_KEY_RECORDS);
+  return data ? JSON.parse(data) : [];
+}
+
+function saveSubmissionRecord(record) {
+  // 1. Local Database
+  const records = getStoredRecords();
+  records.unshift(record);
+  localStorage.setItem(STORAGE_KEY_RECORDS, JSON.stringify(records));
+  renderAdminTable();
+
+  // 2. Google Sheets Webhook Sync
+  const sheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL);
+  const syncStatus = document.getElementById('syncStatusBox');
+
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    syncStatus.className = 'sync-status pending';
+    syncStatus.innerHTML = '<span>⏳ Menghantar ke Google Sheets...</span>';
+
+    fetch(sheetUrl, {
+      method: 'POST',
+      mode: 'no-cors', // allows cross-origin submission to Google Apps Script
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'insert',
+        ...record
+      })
+    }).then(() => {
+      syncStatus.className = 'sync-status success';
+      syncStatus.innerHTML = '<span>✅ Berjaya disimpan ke Google Sheets & Storan</span>';
+    }).catch(err => {
+      console.warn("Ralat sambungan Google Sheets:", err);
+      syncStatus.className = 'sync-status pending';
+      syncStatus.innerHTML = '<span>💾 Tersimpan di storan peranti (Offline)</span>';
+    });
+  } else {
+    syncStatus.className = 'sync-status success';
+    syncStatus.innerHTML = '<span>💾 Tersimpan dalam pangkalan data peranti</span>';
+  }
+}
+
+// 6. ADMIN PASSWORD & MODAL LOGIC
+function promptAdminLogin() {
+  playSound('tap');
+  const inputPw = prompt("Sila masukkan kata laluan Pentadbir (Admin):");
+  if (inputPw === null) return; // User cancelled
+
+  if (inputPw.trim() === "ptm") {
+    openAdminModal();
+  } else {
+    alert("Kata laluan salah! Akses dinafikan.");
+  }
+}
+
+function openAdminModal() {
+  const currentSheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL) || '';
+  document.getElementById('sheetUrlInput').value = currentSheetUrl;
+  renderAdminTable();
+  document.getElementById('adminModal').classList.add('active');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('active');
+}
+
+function saveSheetUrl() {
+  const url = document.getElementById('sheetUrlInput').value.trim();
+  localStorage.setItem(STORAGE_KEY_SHEET_URL, url);
+  alert("URL Google Sheets berjaya dikemaskini!");
+}
+
+// DELETE DATABASE LOGIC
+function handleDeleteDatabase() {
+  const confirmFirst = confirm("PERINGATAN: Adakah anda pasti untuk MEMADAM SEMUA DATA dalam database?");
+  if (!confirmFirst) return;
+
+  const confirmCode = prompt("Untuk mengesahkan, sila taip kata laluan 'ptm' sekali lagi:");
+  if (confirmCode !== "ptm") {
+    alert("Pengesahan gagal. Database tidak dipadam.");
+    return;
+  }
+
+  // Clear local storage database
+  localStorage.removeItem(STORAGE_KEY_RECORDS);
+  renderAdminTable();
+
+  // Trigger Google Sheet Clear if Web App URL exists
+  const sheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL);
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    fetch(sheetUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'delete_all',
+        password: 'ptm'
+      })
+    }).catch(e => console.log(e));
+  }
+
+  alert("Semua rekod pangkalan data telah berjaya dipadam!");
+  closeAdminModal();
+}
+
+function renderAdminTable() {
+  const records = getStoredRecords();
+  const tbody = document.getElementById('adminTableBody');
+  document.getElementById('recordCount').innerText = records.length;
+
+  if (records.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color:#9ca3af; padding: 16px;">Tiada rekod tersimpan</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = records.map(r => `
+    <tr>
+      <td><strong>${r.name}</strong><br><small style="color:#6b7280">${r.timestamp}</small></td>
+      <td>${r.salaryId}</td>
+      <td>${r.group}</td>
+      <td><strong>${r.score}/${r.total}</strong></td>
+    </tr>
+  `).join('');
+}
+
+function exportCSV() {
+  const records = getStoredRecords();
+  if (records.length === 0) {
+    alert("Tiada rekod untuk dieksport.");
+    return;
+  }
+
+  let csv = "Tarikh & Masa,Nama,No Gaji,Kumpulan,Skor,Jumlah,Peratus\n";
+  records.forEach(r => {
+    csv += `"${r.timestamp}","${r.name}","${r.salaryId}","${r.group}",${r.score},${r.total},"${r.percentage}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Rekod_Kuiz_MARA_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// REVIEW ANSWERS
+function toggleReviewModal() {
+  playSound('tap');
+  const modal = document.getElementById('reviewModal');
+  if (modal.classList.contains('active')) {
+    modal.classList.remove('active');
+  } else {
+    populateReview();
+    modal.classList.add('active');
+  }
+}
+
+function populateReview() {
+  const container = document.getElementById('reviewListContainer');
+  if (userAnswers.length === 0) {
+    container.innerHTML = "<p>Tiada data semakan soalan.</p>";
+    return;
+  }
+
+  container.innerHTML = userAnswers.map((item, idx) => {
+    const q = QUIZ_QUESTIONS.find(x => x.id === item.questionId);
+    const correctOpt = q.options.find(o => o.key === item.correct);
+    const userOpt = q.options.find(o => o.key === item.selected);
+
+    return `
+      <div class="review-item" style="border-left: 4px solid ${item.isCorrect ? '#10b981' : '#ef4444'};">
+        <div class="review-q">${idx + 1}. ${item.questionText}</div>
+        <div class="review-ans" style="color: ${item.isCorrect ? '#059669' : '#dc2626'};">
+          Jawapan Anda: (${item.selected.toUpperCase()}) ${userOpt ? userOpt.text : '-'} ${item.isCorrect ? '✅' : '❌'}
+        </div>
+        ${!item.isCorrect ? `
+          <div style="color: #059669; font-weight:600; font-size: 0.8rem; margin-top: 4px;">
+            Jawapan Betul: (${item.correct.toUpperCase()}) ${correctOpt ? correctOpt.text : '-'}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function restartQuiz() {
+  playSound('tap');
+  document.getElementById('userName').value = '';
+  document.getElementById('userSalaryId').value = '';
+  document.getElementById('userGroup').selectedIndex = 0;
+  showScreen('screenIntro');
+}
+
+// Confetti Particle Effect
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = canvas.parentElement.clientHeight;
+
+  const particles = [];
+  const colors = ['#c21807', '#1e3a8a', '#f59e0b', '#10b981', '#3b82f6', '#ec4899'];
+
+  for (let i = 0; i < 75; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 3,
+      r: Math.random() * 5 + 3,
+      dx: (Math.random() - 0.5) * 12,
+      dy: (Math.random() - 1) * 12,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10,
+      opacity: 1
+    });
+  }
+
+  let animationFrame;
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let activeParticles = 0;
+
+    particles.forEach(p => {
+      if (p.opacity > 0) {
+        activeParticles++;
+        p.x += p.dx;
+        p.y += p.dy;
+        p.dy += 0.3; // Gravity
+        p.opacity -= 0.012;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fill();
+      }
+    });
+
+    if (activeParticles > 0) {
+      animationFrame = requestAnimationFrame(render);
+    } else {
+      cancelAnimationFrame(animationFrame);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  render();
+}
+</script>
+
+</body>
+</html>
