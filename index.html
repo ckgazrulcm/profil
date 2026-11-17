@@ -854,7 +854,7 @@
       <div style="margin-bottom: 20px;">
         <label class="form-label">Google Sheets Web App URL:</label>
         <div style="display:flex; gap:6px;">
-          <input type="url" id="sheetUrlInput" class="form-input" style="font-size:0.8rem; padding:8px;" placeholder="https://script.google.com/macros/s/.../exec">
+          <input type="url" id="sheetUrlInput" class="form-input" style="font-size:0.8rem; padding:8px;" value="https://script.google.com/macros/s/AKfycbxDDk--KkYH2BjJCyr4C3BiMwA8iJSkuR16gs3UGYzxfkh6H9L-ps-48fRfeG_9PgQ/exec" placeholder="https://script.google.com/macros/s/.../exec">
           <button class="btn-secondary" style="width:auto; padding:8px 12px; font-size:0.8rem;" onclick="saveSheetUrl()">Simpan</button>
         </div>
         <p style="font-size:0.75rem; color:#6b7280; margin-top:4px;">
@@ -1035,9 +1035,14 @@ let score = 0;
 let soundEnabled = true;
 let isAnsweringLocked = false;
 
-// Google Sheets URL configuration (Stored in localStorage)
+// Google Sheets URL configuration (Stored in localStorage with default fallback)
+const DEFAULT_SHEET_URL = "https://script.google.com/macros/s/AKfycbxDDk--KkYH2BjJCyr4C3BiMwA8iJSkuR16gs3UGYzxfkh6H9L-ps-48fRfeG_9PgQ/exec";
 const STORAGE_KEY_RECORDS = "akm_quiz_records_db";
 const STORAGE_KEY_SHEET_URL = "akm_google_sheet_webapp_url";
+
+function getActiveSheetUrl() {
+  return localStorage.getItem(STORAGE_KEY_SHEET_URL) || DEFAULT_SHEET_URL;
+}
 
 // Web Audio API Synthesizer for high performance mobile sound
 let audioCtx = null;
@@ -1272,7 +1277,7 @@ function saveSubmissionRecord(record) {
   renderAdminTable();
 
   // 2. Google Sheets Webhook Sync
-  const sheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL);
+  const sheetUrl = getActiveSheetUrl();
   const syncStatus = document.getElementById('syncStatusBox');
 
   if (sheetUrl && sheetUrl.startsWith('http')) {
@@ -1317,7 +1322,7 @@ function promptAdminLogin() {
 }
 
 function openAdminModal() {
-  const currentSheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL) || '';
+  const currentSheetUrl = getActiveSheetUrl();
   document.getElementById('sheetUrlInput').value = currentSheetUrl;
   renderAdminTable();
   document.getElementById('adminModal').classList.add('active');
@@ -1349,7 +1354,7 @@ function handleDeleteDatabase() {
   renderAdminTable();
 
   // Trigger Google Sheet Clear if Web App URL exists
-  const sheetUrl = localStorage.getItem(STORAGE_KEY_SHEET_URL);
+  const sheetUrl = getActiveSheetUrl();
   if (sheetUrl && sheetUrl.startsWith('http')) {
     fetch(sheetUrl, {
       method: 'POST',
