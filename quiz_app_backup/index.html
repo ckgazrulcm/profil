@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kuiz Interaktif - Akademi Kecemerlangan MARA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e11d48; /* Radiant Apple Rose/Red */
+      --primary-dark: #be123c;
+      --primary-light: #fb7185;
+      --accent: #f59e0b; /* Amber Gold */
+      --success: #10b981;
+      --danger: #ef4444;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+
+    /* Ambient Apple Glass Background */
+    body {
+      background-color: #070b14;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(225, 29, 72, 0.3) 0px, transparent 50%),
+        radial-gradient(at 50% 45%, rgba(30, 58, 138, 0.25) 0px, transparent 55%),
+        radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.22) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.2) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile Device Frame Container (Apple Liquid Glass) */
+    .mobile-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(35px) saturate(200%);
+      -webkit-backdrop-filter: blur(35px) saturate(200%);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.65);
+      overflow-x: hidden;
+    }
+
+    /* Header Banner with Frosted Glass Top Bar */
+    .app-header {
+      width: 100%;
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header-app-brand {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 7px;
+    }
+
+    .header-banner-wrap {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      line-height: 0;
+      overflow: hidden;
+    }
+
+    .header-banner {
+      width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      display: block;
+    }
+
+    .icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .icon-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.08);
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Main View Area */
+    .main-content {
+      flex: 1;
+      padding: 22px 18px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Screens Management */
+    .screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Apple Glass Badge */
+    .hero-badge {
+      align-self: center;
+      background: rgba(225, 29, 72, 0.18);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.15);
+    }
+
+    .hero-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      color: rgba(241, 245, 249, 0.7);
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 0 10px;
+    }
+
+    /* Apple Glass Card Box */
+    .card-box {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 16px 36px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    /* Apple Glass Inputs */
+    .form-input, .form-select {
+      width: 100%;
+      padding: 13px 16px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #ffffff;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      outline: none;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.38);
+    }
+
+    .form-select option {
+      background-color: #0f172a;
+      color: #ffffff;
+    }
+
+    .form-input:focus, .form-select:focus {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(244, 63, 94, 0.7);
+      box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Apple Glass Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.92) 0%, rgba(159, 18, 57, 0.96) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 1.02rem;
+      font-weight: 700;
+      border-radius: 16px;
+      padding: 15px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 12px 28px -4px rgba(225, 29, 72, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.95) 0%, rgba(190, 18, 60, 0.98) 100%);
+      box-shadow: 0 16px 32px -4px rgba(225, 29, 72, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: scale(0.98);
+      box-shadow: 0 6px 16px -2px rgba(225, 29, 72, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 16px;
+      padding: 13px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.98);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Screen: Game / Quiz */
+    .quiz-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 6px 4px;
+    }
+
+    .hud-badge {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, #e11d48 0%, #f59e0b 100%);
+      border-radius: 20px;
+      box-shadow: 0 0 14px rgba(225, 29, 72, 0.6);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Apple Glass Question Card */
+    .question-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 20px;
+      padding: 22px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    }
+
+    .question-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    /* Apple Glass Option Buttons */
+    .option-btn {
+      position: relative;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 14px 16px 14px 50px;
+      text-align: left;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1.38;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 255, 255, 0.32);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .option-letter {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    /* Selected Option - Radiant Apple Tint */
+    .option-btn.selected {
+      background: rgba(225, 29, 72, 0.22) !important;
+      border-color: rgba(244, 63, 94, 0.85) !important;
+      box-shadow: 0 0 24px rgba(225, 29, 72, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4) !important;
+      color: #ffffff !important;
+    }
+
+    .option-btn.selected .option-letter {
+      background: var(--primary) !important;
+      border-color: rgba(255, 255, 255, 0.5) !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.6) !important;
+    }
+
+    /* Screen: Results */
+    .result-hero {
+      text-align: center;
+      padding: 16px 0 20px;
+    }
+
+    .trophy-icon {
+      font-size: 4rem;
+      animation: bounce 1.2s infinite alternate;
+      display: inline-block;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 6px 12px rgba(245, 158, 11, 0.4));
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-12px); }
+    }
+
+    .result-score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.9) 0%, rgba(159, 18, 57, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      margin: 0 auto 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 36px -6px rgba(225, 29, 72, 0.6), inset 0 2px 2px rgba(255, 255, 255, 0.4);
+    }
+
+    .score-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 600;
+    }
+
+    .user-info-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600;
+    }
+
+    .info-value {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .sync-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .sync-status.success {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #6ee7b7;
+      backdrop-filter: blur(10px);
+    }
+
+    .sync-status.pending {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fde68a;
+      backdrop-filter: blur(10px);
+    }
+
+    .action-buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Footer (Apple Frosted Glass) */
+    .app-footer {
+      text-align: center;
+      padding: 15px;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.4px;
+    }
+
+    .app-footer span {
+      color: #f43f5e;
+    }
+
+    /* Apple Glass Modal / Admin Panel */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(35px) saturate(200%);
+      -webkit-backdrop-filter: blur(35px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 440px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      animation: modalPop 0.25s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 18px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .admin-danger-box {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(12px);
+    }
+
+    .admin-danger-box h4 {
+      color: #fca5a5;
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .admin-danger-box p {
+      color: #fecaca;
+      font-size: 0.82rem;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+      transition: all 0.2s;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+      transform: translateY(-1px);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .admin-table th, .admin-table td {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 9px 8px;
+      text-align: left;
+    }
+
+    .admin-table th {
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Leaderboard Styles (Apple Glass) */
+    .leaderboard-header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .podium-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 10px 4px 4px;
+    }
+
+    .podium-card {
+      flex: 1;
+      max-width: 125px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      padding: 14px 6px 12px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .podium-card.rank-1 {
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.22) 0%, rgba(255, 255, 255, 0.09) 100%);
+      border: 1.5px solid rgba(245, 158, 11, 0.7);
+      transform: translateY(-8px);
+      box-shadow: 0 14px 32px rgba(245, 158, 11, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .podium-card.rank-2 {
+      background: linear-gradient(180deg, rgba(148, 163, 184, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+      border: 1.5px solid rgba(203, 213, 225, 0.5);
+    }
+
+    .podium-card.rank-3 {
+      background: linear-gradient(180deg, rgba(234, 88, 12, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
+      border: 1.5px solid rgba(249, 115, 22, 0.5);
+    }
+
+    .podium-badge {
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .podium-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      margin-bottom: 2px;
+    }
+
+    .podium-group {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 6px;
+    }
+
+    .podium-score {
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
+    }
+
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-height: 340px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 11px 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .rank-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .player-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-name {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-sub {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .player-score-badge {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #f43f5e;
+      text-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mobile-container">
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Header Section with user requested image and admin button -->
+  <header class="app-header">
+    <div class="header-top-bar">
+      <div class="header-app-brand">
+        <span>🇲🇾</span> AKADEMI MARA
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="leaderboardTopBtn" title="Papan Pendahulu" onclick="openLeaderboard('screenIntro')">
+          🏆
+        </button>
+        <button class="icon-btn" id="soundToggleBtn" title="Bunyi Aktif / Bisu" onclick="toggleSound()">
+          <span id="soundIcon">🔊</span>
+        </button>
+        <button class="icon-btn" id="adminBtn" title="Panel Pentadbir" onclick="promptAdminLogin()">
+          ⚙️
+        </button>
+      </div>
+    </div>
+    <div class="header-banner-wrap">
+      <img 
+        src="https://i.postimg.cc/BvdKBjgG/headerbaru.jpg" 
+        alt="Akademi Kecemerlangan MARA Header" 
+        class="header-banner"
+        onerror="this.onerror=null; this.src='https://postimg.cc/sB4xVDqn';"
+      >
+    </div>
+  </header>
+
+  <!-- Main App Screen Container -->
+  <main class="main-content">
+    
+    <!-- 1. SCREEN: REGISTRATION & INTRO -->
+    <section id="screenIntro" class="screen active">
+      <div class="hero-badge">Kuiz Interaktif Perdana</div>
+      <h1 class="hero-title">Ujian Pengetahuan & Nilai MARA</h1>
+      <p class="hero-subtitle">Sila lengkapkan maklumat diri sebelum memulakan sesi kuiz.</p>
+
+      <form id="regForm" onsubmit="handleStartQuiz(event)">
+        <div class="card-box">
+          <div class="form-group">
+            <label class="form-label" for="userName">Nama Penuh</label>
+            <input type="text" id="userName" class="form-input" placeholder="Contoh: Ahmad bin Razak" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userSalaryId">No. Gaji</label>
+            <input type="text" id="userSalaryId" class="form-input" placeholder="Contoh: M12345" required pattern="[A-Za-z0-9\-]+" title="Nombor gaji anda">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userGroup">Kumpulan</label>
+            <select id="userGroup" class="form-select" required>
+              <option value="" disabled selected>-- Pilih Kumpulan (1 - 14) --</option>
+              <option value="Kumpulan 1">Kumpulan 1</option>
+              <option value="Kumpulan 2">Kumpulan 2</option>
+              <option value="Kumpulan 3">Kumpulan 3</option>
+              <option value="Kumpulan 4">Kumpulan 4</option>
+              <option value="Kumpulan 5">Kumpulan 5</option>
+              <option value="Kumpulan 6">Kumpulan 6</option>
+              <option value="Kumpulan 7">Kumpulan 7</option>
+              <option value="Kumpulan 8">Kumpulan 8</option>
+              <option value="Kumpulan 9">Kumpulan 9</option>
+              <option value="Kumpulan 10">Kumpulan 10</option>
+              <option value="Kumpulan 11">Kumpulan 11</option>
+              <option value="Kumpulan 12">Kumpulan 12</option>
+              <option value="Kumpulan 13">Kumpulan 13</option>
+              <option value="Kumpulan 14">Kumpulan 14</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Mula Kuiz Sekarang</span>
+          <span>🎮</span>
+        </button>
+        <button type="button" class="btn-secondary" style="margin-top: 10px;" onclick="openLeaderboard('screenIntro')">
+          <span>🏆 Papan Pendahulu (Leaderboard)</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- 2. SCREEN: QUIZ GAMEPLAY -->
+    <section id="screenQuiz" class="screen">
+      <div class="quiz-hud">
+        <span class="hud-badge" id="hudQuestionNo">Soalan 1 / 10</span>
+        <span class="hud-badge" id="hudGroupTag">Kumpulan -</span>
+        <span class="hud-badge" style="color: var(--primary); font-weight:800;">Akademi MARA</span>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+
+      <div class="question-card">
+        <h2 class="question-title" id="questionText">Memuat soalan...</h2>
+      </div>
+
+      <div class="options-grid" id="optionsContainer">
+        <!-- Option buttons dynamically rendered -->
+      </div>
+
+      <button type="button" id="btnSubmitAnswer" class="btn-primary" style="margin-top: 10px; opacity: 0.5; cursor: not-allowed;" onclick="handleSubmitAnswer()" disabled>
+        <span id="btnSubmitText">Hantar Jawapan</span>
+        <span>➡️</span>
+      </button>
+    </section>
+
+    <!-- 3. SCREEN: RESULTS -->
+    <section id="screenResult" class="screen">
+      <div class="result-hero">
+        <div class="trophy-icon" id="resultEmoji">🏆</div>
+        <h2 class="hero-title" id="resultGreeting">Tahniah!</h2>
+        <p class="hero-subtitle" id="resultMessage">Kuiz telah berjaya diselesaikan dengan cemerlang.</p>
+
+        <div class="result-score-circle">
+          <span class="score-number" id="finalScoreVal">10</span>
+          <span class="score-total">/ 10 Soalan</span>
+        </div>
+      </div>
+
+      <div class="user-info-card">
+        <div class="info-row">
+          <span class="info-label">Nama:</span>
+          <span class="info-value" id="resName">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">No. Gaji:</span>
+          <span class="info-value" id="resNoGaji">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Kumpulan:</span>
+          <span class="info-value" id="resGroup">-</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Masa Selesai:</span>
+          <span class="info-value" id="resTime">-</span>
+        </div>
+      </div>
+
+      <div id="syncStatusBox" class="sync-status success">
+        <span>✅ Data disimpan ke pangkalan data Google Sheets</span>
+      </div>
+
+      <div class="action-buttons-group">
+        <button class="btn-primary" onclick="openLeaderboard('screenResult')">
+          <span>Lihat Leaderboard</span>
+          <span>🏆</span>
+        </button>
+        <button class="btn-secondary" onclick="restartQuiz()">
+          <span>Main Semula</span>
+          <span>🔄</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. SCREEN: LEADERBOARD -->
+    <section id="screenLeaderboard" class="screen">
+      <div class="leaderboard-header">
+        <div class="hero-badge" style="background: rgba(245, 158, 11, 0.18); color: #fde68a; border-color: rgba(245, 158, 11, 0.4);">Kedudukan Peserta</div>
+        <h2 class="hero-title" style="font-size: 1.45rem; margin-bottom: 4px;">🏆 Papan Pendahulu</h2>
+        <p class="hero-subtitle" style="margin-bottom: 14px;">Kedudukan markah tertinggi peserta Akademi MARA</p>
+      </div>
+
+      <!-- Filter Kumpulan -->
+      <div class="card-box" style="padding: 10px 14px; margin-bottom: 14px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+          <label style="font-size:0.8rem; font-weight:700; color: rgba(255, 255, 255, 0.85); white-space:nowrap;">Tapis:</label>
+          <select id="leaderboardGroupFilter" class="form-select" style="padding:7px 10px; font-size:0.82rem;" onchange="renderLeaderboardUI()">
+            <option value="ALL">Semua Kumpulan</option>
+            <option value="Kumpulan 1">Kumpulan 1</option>
+            <option value="Kumpulan 2">Kumpulan 2</option>
+            <option value="Kumpulan 3">Kumpulan 3</option>
+            <option value="Kumpulan 4">Kumpulan 4</option>
+            <option value="Kumpulan 5">Kumpulan 5</option>
+            <option value="Kumpulan 6">Kumpulan 6</option>
+            <option value="Kumpulan 7">Kumpulan 7</option>
+            <option value="Kumpulan 8">Kumpulan 8</option>
+            <option value="Kumpulan 9">Kumpulan 9</option>
+            <option value="Kumpulan 10">Kumpulan 10</option>
+            <option value="Kumpulan 11">Kumpulan 11</option>
+            <option value="Kumpulan 12">Kumpulan 12</option>
+            <option value="Kumpulan 13">Kumpulan 13</option>
+            <option value="Kumpulan 14">Kumpulan 14</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Top 3 Podium Area -->
+      <div id="podiumArea" class="podium-container"></div>
+
+      <!-- Leaderboard Scroll List -->
+      <div class="leaderboard-list" id="leaderboardListContainer"></div>
+
+      <div style="display:flex; gap:10px; margin-top: 18px;">
+        <button type="button" class="btn-secondary" style="flex:1;" onclick="reloadLeaderboardData()">
+          <span>Segar Semula 🔄</span>
+        </button>
+        <button type="button" class="btn-primary" style="flex:1; padding:12px;" onclick="exitLeaderboard()">
+          <span>Kembali ↩️</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer requested by user -->
+  <footer class="app-footer">
+    Akademi Kecemerlangan <span>MARA</span>
+  </footer>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-backdrop" id="adminModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">
+        <span>⚙️</span> Panel Pentadbir
+      </div>
+      <button class="modal-close" onclick="closeAdminModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      
+      <!-- Danger Zone for Deleting Database -->
+      <div class="admin-danger-box">
+        <h4>Tindakan Kritikal: Padam Database</h4>
+        <p>Tindakan ini akan memadam semua rekod peserta daripada pangkalan data (Google Sheets & storan peranti).</p>
+        <button class="btn-danger" onclick="handleDeleteDatabase()">
+          <span>🗑️ Padam Semua Rekod Database</span>
+        </button>
+      </div>
+
+      <!-- Google Sheets Connection Setup -->
+      <div style="margin-bottom: 20px;">
+        <label class="form-label">Google Sheets Web App URL:</label>
+        <div style="display:flex; gap:6px;">
+          <input type="url" id="sheetUrlInput" class="form-input" style="font-size:0.8rem; padding:8px;" value="https://script.google.com/macros/s/AKfycbxDDk--KkYH2BjJCyr4C3BiMwA8iJSkuR16gs3UGYzxfkh6H9L-ps-48fRfeG_9PgQ/exec" placeholder="https://script.google.com/macros/s/.../exec">
+          <button class="btn-secondary" style="width:auto; padding:8px 12px; font-size:0.8rem;" onclick="saveSheetUrl()">Simpan</button>
+        </div>
+        <p style="font-size:0.75rem; color: rgba(255, 255, 255, 0.6); margin-top:4px;">
+          *Nota: Masukkan URL Web App Google Apps Script jika ingin menyambung terus ke fail Google Sheet anda.
+        </p>
+      </div>
+
+      <!-- Record list table -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size: 0.95rem; font-weight:700; color:#ffffff;">Senarai Rekod Peserta (<span id="recordCount">0</span>)</h4>
+        <button onclick="exportCSV()" class="btn-secondary" style="width:auto; padding:4px 10px; font-size:0.75rem;">Muat Turun CSV</button>
+      </div>
+
+      <div style="max-height: 220px; overflow-y: auto; margin-top: 8px;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>No Gaji</th>
+              <th>Kump</th>
+              <th>Skor</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <tr>
+              <td colspan="4" style="text-align: center; color:#9ca3af;">Tiada rekod tersimpan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+/**
+ * 10 Soalan & Skema Jawapan Rasmi
+ */
+const QUIZ_QUESTIONS = [
+  {
+    id: 1,
+    question: "Manakah antara berikut bukan tingkah laku nilai amanah?",
+    options: [
+      { key: "a", text: "Membelanjakan harta awam mengikut peraturan" },
+      { key: "b", text: "Tidak jujur ketika menjalankan tugas" },
+      { key: "c", text: "Menyiapkan kerja mengikut tempoh yang ditetapkan" },
+      { key: "d", text: "Menggunakan masa bekerja dengan sebaik mungkin" }
+    ],
+    answer: "b"
+  },
+  {
+    id: 2,
+    question: "Sistem pemerintahan yang diamalkan di Malaysia adalah",
+    options: [
+      { key: "a", text: "Republik" },
+      { key: "b", text: "Komunis" },
+      { key: "c", text: "Demokrasi Berparlimen" },
+      { key: "d", text: "Monarki" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 3,
+    question: "3 Sistem pemerintahan Negara Malaysia terdiri daripada 3 badan utama iaitu",
+    options: [
+      { key: "a", text: "Perundangan, Ketenteraan, Kehakiman" },
+      { key: "b", text: "Ketenteraan, Kehakiman, Eksekutif" },
+      { key: "c", text: "Perundangan, Kehakiman, Eksekutif" },
+      { key: "d", text: "Eksekutif, Ketenteraan, Perundangan" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 4,
+    question: "Perkara 153 Perlembagaan Persekutuan memperuntukkan",
+    options: [
+      { key: "a", text: "Layanan sama rata persekutuan" },
+      { key: "b", text: "Kedudukan istimewa Bumiputera Sabah dan Sarawak" },
+      { key: "c", text: "Tanggungjawab DYMM Yang Di-Pertuan Agong memelihara kedudukan keistimewaan orang Melayu dan bumiputera" },
+      { key: "d", text: "Pemeliharaan kedudukan dari segi Perlembagaan Sabah dan Sarawak" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 5,
+    question: "Bilakah tarikh pembentukan Malaysia?",
+    options: [
+      { key: "a", text: "31 Ogos 1957" },
+      { key: "b", text: "13 Mei 1969" },
+      { key: "c", text: "16 September 1963" },
+      { key: "d", text: "31 Ogos 1970" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 6,
+    question: "Rukun Negara diperkenalkan pada…",
+    options: [
+      { key: "a", text: "31 Ogos 1980" },
+      { key: "b", text: "31 Ogos 1970" },
+      { key: "c", text: "16 September 1963" },
+      { key: "d", text: "31 Ogos 1957" }
+    ],
+    answer: "b"
+  },
+  {
+    id: 7,
+    question: "Ketua Negara bagi Malaysia adalah",
+    options: [
+      { key: "a", text: "Yang Di-Pertuan Agong" },
+      { key: "b", text: "Perdana Menteri" },
+      { key: "c", text: "Setiausaha Parlimen" },
+      { key: "d", text: "Ketua Setiausaha Negara" }
+    ],
+    answer: "a"
+  },
+  {
+    id: 8,
+    question: "Kesan umum rasuah terhadap negara ialah:",
+    options: [
+      { key: "a", text: "Merapatkan jurang antara yang kaya dengan yang miskin" },
+      { key: "b", text: "Meningkatkan pertumbuhan ekonomi" },
+      { key: "c", text: "Menjejaskan kelicinan dan kecekapan pentadbiran kerajaan" },
+      { key: "d", text: "Menurunkan kadar jenayah yang boleh mengancam keselamatan negara, nyawa dan harta benda" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 9,
+    question: "Apakah tema Hari Kemerdekaan dan Hari Malaysia pada tahun 2026?",
+    options: [
+      { key: "a", text: "Malaysia MADANI, Rakyat Disantuni" },
+      { key: "b", text: "Malaysia MADANI, Jiwa Merdeka" },
+      { key: "c", text: "Malaysia MADANI, Kesejahteraan Dinikmati" },
+      { key: "d", text: "Malaysia MADANI: Tekad Perpaduan Penuhi Harapan" }
+    ],
+    answer: "c"
+  },
+  {
+    id: 10,
+    question: "Berikut adalah 6 Nilai Teras MADANI kecuali:",
+    options: [
+      { key: "a", text: "Kemampanan" },
+      { key: "b", text: "Kesejahteraan" },
+      { key: "c", text: "Kemakmuran" },
+      { key: "d", text: "Hormat" }
+    ],
+    answer: "c"
+  }
+];
+
+// App State
+let currentUser = {
+  name: "",
+  salaryId: "",
+  group: ""
+};
+
+let currentQuestionIndex = 0;
+let userAnswers = []; // stores user selections
+let score = 0;
+let soundEnabled = true;
+let isAnsweringLocked = false;
+
+// Google Sheets URL configuration (Stored in localStorage with default fallback)
+const DEFAULT_SHEET_URL = "https://script.google.com/macros/s/AKfycbxDDk--KkYH2BjJCyr4C3BiMwA8iJSkuR16gs3UGYzxfkh6H9L-ps-48fRfeG_9PgQ/exec";
+const STORAGE_KEY_RECORDS = "akm_quiz_records_db";
+const STORAGE_KEY_SHEET_URL = "akm_google_sheet_webapp_url";
+
+function getActiveSheetUrl() {
+  return localStorage.getItem(STORAGE_KEY_SHEET_URL) || DEFAULT_SHEET_URL;
+}
+
+// Web Audio API Synthesizer for high performance mobile sound
+let audioCtx = null;
+
+function getAudioContext() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      audioCtx = new AudioContext();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playSound(type) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+
+    if (type === 'tap') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, now);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'correct') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, now); // C5
+      osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === 'wrong') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now); // A3
+      osc.frequency.setValueAtTime(160, now + 0.12);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === 'fanfare') {
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, idx) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.type = 'triangle';
+        o.frequency.setValueAtTime(freq, now + idx * 0.12);
+        g.gain.setValueAtTime(0.2, now + idx * 0.12);
+        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.3);
+        o.start(now + idx * 0.12);
+        o.stop(now + idx * 0.12 + 0.3);
+      });
+    }
+  } catch (e) {
+    console.log("Audio not supported or blocked", e);
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('soundIcon').innerText = soundEnabled ? '🔊' : '🔇';
+}
+
+// Navigation between views
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 1. START QUIZ
+function handleStartQuiz(e) {
+  e.preventDefault();
+  playSound('tap');
+
+  const name = document.getElementById('userName').value.trim();
+  const salaryId = document.getElementById('userSalaryId').value.trim();
+  const group = document.getElementById('userGroup').value;
+
+  if (!name || !salaryId || !group) {
+    alert("Sila lengkapkan semua maklumat sebelum memulakan.");
+    return;
+  }
+
+  currentUser = { name, salaryId, group };
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  score = 0;
+
+  document.getElementById('hudGroupTag').innerText = group;
+  loadQuestion(0);
+  showScreen('screenQuiz');
+}
+
+let selectedOptionKey = null;
+
+// 2. LOAD QUESTION
+function loadQuestion(index) {
+  isAnsweringLocked = false;
+  selectedOptionKey = null;
+  const q = QUIZ_QUESTIONS[index];
+
+  document.getElementById('hudQuestionNo').innerText = `Soalan ${index + 1} / ${QUIZ_QUESTIONS.length}`;
+  document.getElementById('progressBar').style.width = `${((index + 1) / QUIZ_QUESTIONS.length) * 100}%`;
+
+  document.getElementById('questionText').innerText = `${index + 1}. ${q.question}`;
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${opt.key.toUpperCase()}</span> ${opt.text}`;
+    btn.onclick = () => handleSelectOption(opt.key, btn);
+    container.appendChild(btn);
+  });
+
+  // Reset status butang Hantar Jawapan
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  const btnSubmitText = document.getElementById('btnSubmitText');
+  if (btnSubmit && btnSubmitText) {
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = '0.5';
+    btnSubmit.style.cursor = 'not-allowed';
+
+    if (index === QUIZ_QUESTIONS.length - 1) {
+      btnSubmitText.innerText = "Hantar & Tamat Kuiz";
+    } else {
+      btnSubmitText.innerText = "Hantar Jawapan";
+    }
+  }
+}
+
+// 3. SELECT OPTION (Memilih pilihan tanpa terus beralih ke soalan seterusnya)
+function handleSelectOption(selectedKey, clickedBtn) {
+  if (isAnsweringLocked) return;
+
+  selectedOptionKey = selectedKey;
+  playSound('tap');
+
+  // Bersihkan kelas selected daripada semua pilihan dan tandakan pilihan yang dipilih
+  const allButtons = document.querySelectorAll('.option-btn');
+  allButtons.forEach(btn => btn.classList.remove('selected'));
+  clickedBtn.classList.add('selected');
+
+  // Aktifkan butang Hantar Jawapan
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  if (btnSubmit) {
+    btnSubmit.disabled = false;
+    btnSubmit.style.opacity = '1';
+    btnSubmit.style.cursor = 'pointer';
+  }
+}
+
+// 4. SUBMIT ANSWER (Hanya beralih bila pengguna menekan butang Hantar)
+function handleSubmitAnswer() {
+  if (isAnsweringLocked) return;
+
+  if (!selectedOptionKey) {
+    alert("Sila pilih satu jawapan terlebih dahulu sebelum menekan butang Hantar.");
+    return;
+  }
+
+  isAnsweringLocked = true;
+  const btnSubmit = document.getElementById('btnSubmitAnswer');
+  if (btnSubmit) {
+    btnSubmit.disabled = true;
+    btnSubmit.style.opacity = '0.6';
+    btnSubmit.style.cursor = 'not-allowed';
+  }
+
+  const q = QUIZ_QUESTIONS[currentQuestionIndex];
+  const isCorrect = (selectedOptionKey === q.answer);
+
+  userAnswers.push({
+    questionId: q.id,
+    selected: selectedOptionKey,
+    isCorrect: isCorrect
+  });
+
+  if (isCorrect) {
+    score++;
+  }
+
+  playSound('tap');
+
+  currentQuestionIndex++;
+  if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
+    loadQuestion(currentQuestionIndex);
+  } else {
+    finishQuiz();
+  }
+}
+
+// 4. FINISH QUIZ & SYNC TO GOOGLE SHEETS
+function finishQuiz() {
+  playSound('fanfare');
+  launchConfetti();
+
+  const finalScoreEl = document.getElementById('finalScoreVal');
+  finalScoreEl.innerText = score;
+
+  const now = new Date();
+  const timeFormatted = now.toLocaleDateString('ms-MY') + ' ' + now.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
+
+  document.getElementById('resName').innerText = currentUser.name;
+  document.getElementById('resNoGaji').innerText = currentUser.salaryId;
+  document.getElementById('resGroup').innerText = currentUser.group;
+  document.getElementById('resTime').innerText = timeFormatted;
+
+  if (score >= 8) {
+    document.getElementById('resultEmoji').innerText = '🏆';
+    document.getElementById('resultGreeting').innerText = 'Luar Biasa!';
+    document.getElementById('resultMessage').innerText = 'Prestasi anda amat cemerlang dalam menguasai nilai & perlembagaan!';
+  } else if (score >= 5) {
+    document.getElementById('resultEmoji').innerText = '🎖️';
+    document.getElementById('resultGreeting').innerText = 'Tahniah!';
+    document.getElementById('resultMessage').innerText = 'Keputusan yang baik. Teruskan usaha meningkatkan kecemerlangan!';
+  } else {
+    document.getElementById('resultEmoji').innerText = '📚';
+    document.getElementById('resultGreeting').innerText = 'Teruskan Berusaha!';
+    document.getElementById('resultMessage').innerText = 'Jadikan pengalaman ini dorongan untuk mendalami nilai MARA.';
+  }
+
+  // Save to Database
+  saveSubmissionRecord({
+    timestamp: timeFormatted,
+    name: currentUser.name,
+    salaryId: currentUser.salaryId,
+    group: currentUser.group,
+    score: score,
+    total: QUIZ_QUESTIONS.length,
+    percentage: Math.round((score / QUIZ_QUESTIONS.length) * 100) + '%'
+  });
+
+  showScreen('screenResult');
+}
+
+// 5. DATABASE OPERATIONS (GOOGLE SHEETS & LOCAL)
+function getStoredRecords() {
+  const data = localStorage.getItem(STORAGE_KEY_RECORDS);
+  return data ? JSON.parse(data) : [];
+}
+
+function saveSubmissionRecord(record) {
+  // 1. Local Database
+  const records = getStoredRecords();
+  records.unshift(record);
+  localStorage.setItem(STORAGE_KEY_RECORDS, JSON.stringify(records));
+  renderAdminTable();
+
+  // 2. Google Sheets Webhook Sync
+  const sheetUrl = getActiveSheetUrl();
+  const syncStatus = document.getElementById('syncStatusBox');
+
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    syncStatus.className = 'sync-status pending';
+    syncStatus.innerHTML = '<span>⏳ Menghantar ke Google Sheets...</span>';
+
+    fetch(sheetUrl, {
+      method: 'POST',
+      mode: 'no-cors', // allows cross-origin submission to Google Apps Script
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        action: 'insert',
+        ...record
+      })
+    }).then(() => {
+      syncStatus.className = 'sync-status success';
+      syncStatus.innerHTML = '<span>✅ Berjaya disimpan ke Google Sheets & Storan</span>';
+    }).catch(err => {
+      console.warn("Ralat sambungan Google Sheets:", err);
+      syncStatus.className = 'sync-status pending';
+      syncStatus.innerHTML = '<span>💾 Tersimpan di storan peranti (Offline)</span>';
+    });
+  } else {
+    syncStatus.className = 'sync-status success';
+    syncStatus.innerHTML = '<span>💾 Tersimpan dalam pangkalan data peranti</span>';
+  }
+}
+
+// 6. ADMIN PASSWORD & MODAL LOGIC
+function promptAdminLogin() {
+  playSound('tap');
+  const inputPw = prompt("Sila masukkan kata laluan Pentadbir (Admin):");
+  if (inputPw === null) return; // User cancelled
+
+  if (inputPw.trim() === "ptm") {
+    openAdminModal();
+  } else {
+    alert("Kata laluan salah! Akses dinafikan.");
+  }
+}
+
+function openAdminModal() {
+  const currentSheetUrl = getActiveSheetUrl();
+  document.getElementById('sheetUrlInput').value = currentSheetUrl;
+  renderAdminTable();
+  document.getElementById('adminModal').classList.add('active');
+}
+
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('active');
+}
+
+function saveSheetUrl() {
+  const url = document.getElementById('sheetUrlInput').value.trim();
+  localStorage.setItem(STORAGE_KEY_SHEET_URL, url);
+  alert("URL Google Sheets berjaya dikemaskini!");
+}
+
+// DELETE DATABASE LOGIC
+function handleDeleteDatabase() {
+  const confirmFirst = confirm("PERINGATAN: Adakah anda pasti untuk MEMADAM SEMUA DATA dalam database?");
+  if (!confirmFirst) return;
+
+  const confirmCode = prompt("Untuk mengesahkan, sila taip kata laluan 'ptm' sekali lagi:");
+  if (confirmCode !== "ptm") {
+    alert("Pengesahan gagal. Database tidak dipadam.");
+    return;
+  }
+
+  // Clear local storage database
+  localStorage.removeItem(STORAGE_KEY_RECORDS);
+  renderAdminTable();
+
+  // Trigger Google Sheet Clear if Web App URL exists
+  const sheetUrl = getActiveSheetUrl();
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    fetch(sheetUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action: 'delete_all',
+        password: 'ptm'
+      })
+    }).catch(e => console.log(e));
+  }
+
+  alert("Semua rekod pangkalan data telah berjaya dipadam!");
+  closeAdminModal();
+}
+
+function renderAdminTable() {
+  const records = getStoredRecords();
+  const tbody = document.getElementById('adminTableBody');
+  document.getElementById('recordCount').innerText = records.length;
+
+  if (records.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color:#9ca3af; padding: 16px;">Tiada rekod tersimpan</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = records.map(r => `
+    <tr>
+      <td><strong>${r.name}</strong><br><small style="color:#6b7280">${r.timestamp}</small></td>
+      <td>${r.salaryId}</td>
+      <td>${r.group}</td>
+      <td><strong>${r.score}/${r.total}</strong></td>
+    </tr>
+  `).join('');
+}
+
+function exportCSV() {
+  const records = getStoredRecords();
+  if (records.length === 0) {
+    alert("Tiada rekod untuk dieksport.");
+    return;
+  }
+
+  let csv = "Tarikh & Masa,Nama,No Gaji,Kumpulan,Skor,Jumlah,Peratus\n";
+  records.forEach(r => {
+    csv += `"${r.timestamp}","${r.name}","${r.salaryId}","${r.group}",${r.score},${r.total},"${r.percentage}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Rekod_Kuiz_MARA_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ==========================================
+// LEADERBOARD LOGIC
+// ==========================================
+let previousScreenBeforeLeaderboard = 'screenIntro';
+let cachedLeaderboardData = [];
+
+function openLeaderboard(fromScreen) {
+  playSound('tap');
+  previousScreenBeforeLeaderboard = fromScreen || 'screenIntro';
+  showScreen('screenLeaderboard');
+  loadLeaderboard();
+}
+
+function exitLeaderboard() {
+  playSound('tap');
+  showScreen(previousScreenBeforeLeaderboard);
+}
+
+async function loadLeaderboard() {
+  // Gunakan data storan peranti terlebih dahulu untuk paparan serta-merta
+  cachedLeaderboardData = getStoredRecords();
+  renderLeaderboardUI();
+
+  // Dapatkan data terkini daripada Google Sheets
+  const sheetUrl = getActiveSheetUrl();
+  if (sheetUrl && sheetUrl.startsWith('http')) {
+    try {
+      const resp = await fetch(sheetUrl);
+      if (resp.ok) {
+        const json = await resp.json();
+        if (json && json.status === 'success' && Array.isArray(json.data)) {
+          cachedLeaderboardData = json.data;
+          localStorage.setItem(STORAGE_KEY_RECORDS, JSON.stringify(cachedLeaderboardData));
+          renderLeaderboardUI();
+          renderAdminTable();
+        }
+      }
+    } catch (e) {
+      console.log("Menggunakan data storan peranti untuk papan pendahulu", e);
+    }
+  }
+}
+
+function reloadLeaderboardData() {
+  playSound('tap');
+  const listEl = document.getElementById('leaderboardListContainer');
+  if (listEl) {
+    listEl.innerHTML = `<div style="text-align:center; padding:24px; color:#6b7280; font-size:0.85rem;">Memuatkan data terkini daripada pangkalan data...</div>`;
+  }
+  loadLeaderboard();
+}
+
+function renderLeaderboardUI() {
+  const filterEl = document.getElementById('leaderboardGroupFilter');
+  const filterVal = filterEl ? filterEl.value : 'ALL';
+  let list = [...cachedLeaderboardData];
+
+  if (filterVal !== 'ALL') {
+    list = list.filter(item => item.group === filterVal);
+  }
+
+  // Susun mengikut markah tertinggi
+  list.sort((a, b) => (Number(b.score) || 0) - (Number(a.score) || 0));
+
+  const podiumEl = document.getElementById('podiumArea');
+  const listEl = document.getElementById('leaderboardListContainer');
+
+  if (list.length === 0) {
+    if (podiumEl) podiumEl.innerHTML = '';
+    if (listEl) {
+      listEl.innerHTML = `
+        <div style="text-align:center; padding:35px 10px; color:#9ca3af; font-size:0.85rem;">
+          Belum ada rekod peserta bagi kumpulan ini.
+        </div>
+      `;
+    }
+    return;
+  }
+
+  // Paparan Podium Top 3
+  const top1 = list[0];
+  const top2 = list[1];
+  const top3 = list[2];
+
+  let podiumHtml = '';
+
+  // Tempat Ke-2 (Kiri)
+  if (top2) {
+    podiumHtml += `
+      <div class="podium-card rank-2">
+        <div class="podium-badge">🥈</div>
+        <div class="podium-name" title="${top2.name}">${top2.name}</div>
+        <div class="podium-group">${top2.group}</div>
+        <div class="podium-score">${top2.score}/${top2.total || 10}</div>
+      </div>
+    `;
+  } else {
+    podiumHtml += `<div class="podium-card rank-2" style="opacity:0.35;"><div class="podium-badge">🥈</div><div class="podium-name">-</div></div>`;
+  }
+
+  // Tempat Pertama (Tengah)
+  if (top1) {
+    podiumHtml += `
+      <div class="podium-card rank-1">
+        <div class="podium-badge">👑</div>
+        <div class="podium-name" title="${top1.name}">${top1.name}</div>
+        <div class="podium-group">${top1.group}</div>
+        <div class="podium-score">${top1.score}/${top1.total || 10}</div>
+      </div>
+    `;
+  }
+
+  // Tempat Ke-3 (Kanan)
+  if (top3) {
+    podiumHtml += `
+      <div class="podium-card rank-3">
+        <div class="podium-badge">🥉</div>
+        <div class="podium-name" title="${top3.name}">${top3.name}</div>
+        <div class="podium-group">${top3.group}</div>
+        <div class="podium-score">${top3.score}/${top3.total || 10}</div>
+      </div>
+    `;
+  } else {
+    podiumHtml += `<div class="podium-card rank-3" style="opacity:0.35;"><div class="podium-badge">🥉</div><div class="podium-name">-</div></div>`;
+  }
+
+  if (podiumEl) podiumEl.innerHTML = podiumHtml;
+
+  // Paparan Senarai Keseluruhan
+  if (listEl) {
+    listEl.innerHTML = list.map((item, index) => {
+      const rank = index + 1;
+      let rankIcon = rank;
+      if (rank === 1) rankIcon = '🥇';
+      else if (rank === 2) rankIcon = '🥈';
+      else if (rank === 3) rankIcon = '🥉';
+
+      return `
+        <div class="leaderboard-item">
+          <div class="rank-pill">${rankIcon}</div>
+          <div class="player-details">
+            <div class="player-name">${item.name}</div>
+            <div class="player-sub">${item.group} • ${item.salaryId}</div>
+          </div>
+          <div class="player-score-badge">${item.score}/${item.total || 10}</div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+function restartQuiz() {
+  playSound('tap');
+  document.getElementById('userName').value = '';
+  document.getElementById('userSalaryId').value = '';
+  document.getElementById('userGroup').selectedIndex = 0;
+  showScreen('screenIntro');
+}
+
+// Confetti Particle Effect
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = canvas.parentElement.clientHeight;
+
+  const particles = [];
+  const colors = ['#c21807', '#1e3a8a', '#f59e0b', '#10b981', '#3b82f6', '#ec4899'];
+
+  for (let i = 0; i < 75; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 3,
+      r: Math.random() * 5 + 3,
+      dx: (Math.random() - 0.5) * 12,
+      dy: (Math.random() - 1) * 12,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10,
+      opacity: 1
+    });
+  }
+
+  let animationFrame;
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let activeParticles = 0;
+
+    particles.forEach(p => {
+      if (p.opacity > 0) {
+        activeParticles++;
+        p.x += p.dx;
+        p.y += p.dy;
+        p.dy += 0.3; // Gravity
+        p.opacity -= 0.012;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.opacity);
+        ctx.fill();
+      }
+    });
+
+    if (activeParticles > 0) {
+      animationFrame = requestAnimationFrame(render);
+    } else {
+      cancelAnimationFrame(animationFrame);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  render();
+}
+</script>
+
+</body>
+</html>

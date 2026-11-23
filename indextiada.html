@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIKGU AZRUL | Pendidik Sains Komputer, MIE Expert & Penggiat AI</title>
+  <meta name="description" content="Laman Penjenamaan Peribadi Cikgu Azrul - Pendidik Sains Komputer MRSM Merbok, Microsoft Innovative Educator Expert (MIEE) & Penggiat AI Pendidikan Malaysia.">
+  <meta name="keywords" content="Cikgu Azrul, MRSM Merbok, Sains Komputer, MIE Expert, AI Pendidikan, Inovasi Digital Kedah">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="CIKGU AZRUL — Pendidik Sains Komputer & Penggiat AI">
+  <meta property="og:description" content="Inovasi Pendidikan Digital, Pengaturcaraan dan Kecerdasan Buatan (AI) di Bilik Darjah MRSM Merbok, Kedah.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+  <!-- Google Fonts: Syne (Ultra-Display), Plus Jakarta Sans (UI/Body), JetBrains Mono (Tech) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            night: '#09090F',
+            'night-card': '#11111B',
+            'night-surface': '#181826',
+            'neon-red': '#FF304F',
+            'neon-crimson': '#E61E3D',
+            'neon-glow': 'rgba(255, 48, 79, 0.45)',
+            'glass-border': 'rgba(255, 255, 255, 0.08)',
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.7', transform: 'scale(1.08)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            floatReverse: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(10px)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          },
+          animation: {
+            'pulse-glow': 'pulseGlow 6s ease-in-out infinite',
+            'float-slow': 'floatSlow 7s ease-in-out infinite',
+            'float-reverse': 'floatReverse 8s ease-in-out infinite',
+            'shimmer': 'shimmer 4s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090F;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232334;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF304F;
+    }
+
+    /* Selection */
+    ::selection {
+      background: #FF304F;
+      color: #FFFFFF;
+    }
+
+    /* Ambient Glass Panels */
+    .glass-panel {
+      background: rgba(17, 17, 27, 0.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-panel-subtle {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .glass-panel-red {
+      background: rgba(255, 48, 79, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 48, 79, 0.25);
+    }
+
+    /* Giant Background Typography Layer */
+    .giant-bg-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      color: rgba(255, 255, 255, 0.03);
+      -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+      text-shadow: 0 0 80px rgba(255, 48, 79, 0.15);
+      transition: transform 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+
+    /* Text Gradient */
+    .text-gradient-red {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFA8B5 45%, #FF304F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-fire {
+      background: linear-gradient(135deg, #FFF 10%, #FF304F 80%, #99001A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 3D Card Hover Perspective */
+    .card-3d-wrap {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+    .card-3d-inner {
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .card-3d-wrap:hover .card-3d-inner {
+      box-shadow: 0 25px 60px -15px rgba(255, 48, 79, 0.2), 0 0 35px rgba(255, 48, 79, 0.12);
+    }
+
+    /* Specular Glare Reflection on Hover */
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .card-3d-wrap:hover .card-glare {
+      opacity: 1;
+    }
+
+    /* Portrait Styling */
+    .portrait-glow {
+      filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(255, 48, 79, 0.28));
+      transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Button Glow & Magnetic Hover */
+    .btn-magnetic {
+      position: relative;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+      will-change: transform;
+    }
+    .btn-neon-glow {
+      box-shadow: 0 0 25px rgba(255, 48, 79, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+    .btn-neon-glow:hover {
+      box-shadow: 0 0 45px rgba(255, 48, 79, 0.85), inset 0 0 20px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Grid Background Pattern */
+    .bg-grid-tech {
+      background-size: 50px 50px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Reduced Motion Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .card-3d-inner, .giant-bg-text, .portrait-glow {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-night text-slate-100 font-sans antialiased overflow-x-hidden relative selection:bg-neon-red selection:text-white">
+
+  <!-- Interactive Background Canvas (3D Constellation & Floating Red Embers) -->
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-70"></canvas>
+
+  <!-- Ambient Glowing Background Orbs -->
+  <div class="fixed top-1/4 -left-48 w-96 h-96 bg-neon-red/15 rounded-full blur-[130px] pointer-events-none z-0 animate-pulse-glow"></div>
+  <div class="fixed bottom-1/3 -right-48 w-[450px] h-[450px] bg-red-600/10 rounded-full blur-[160px] pointer-events-none z-0 animate-pulse-glow" style="animation-delay: 3s;"></div>
+  <div class="fixed top-2/3 left-1/3 w-80 h-80 bg-rose-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+  <!-- Sound Toggle & Audio Synthesis Feedback -->
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <button id="sound-toggle" aria-label="Kawal Audio Kesan Bunyi" class="glass-panel text-slate-300 hover:text-white hover:border-neon-red/50 p-3 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center group">
+      <i data-lucide="volume-2" class="w-5 h-5 text-neon-red group-hover:scale-110 transition-transform" id="sound-icon"></i>
+      <span class="sr-only">Kawal Kesan Bunyi</span>
+    </button>
+    <a href="#hero" id="back-to-top" aria-label="Kembali ke atas" class="glass-panel opacity-0 pointer-events-none text-slate-300 hover:text-neon-red hover:border-neon-red/50 p-3 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center group">
+      <i data-lucide="arrow-up" class="w-5 h-5 group-hover:-translate-y-1 transition-transform"></i>
+    </a>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 transition-all duration-300" id="main-nav">
+    <div class="max-w-7xl mx-auto flex items-center justify-between glass-panel px-6 py-3.5 rounded-2xl shadow-2xl border border-white/10">
+      
+      <!-- Logo / Personal Brand -->
+      <a href="#hero" class="flex items-center gap-3 group" onclick="playClickSound()">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-red to-rose-700 flex items-center justify-center shadow-lg shadow-neon-red/30 group-hover:scale-105 transition-transform">
+          <span class="font-display font-black text-white text-lg tracking-wider">A</span>
+        </div>
+        <div>
+          <div class="font-display font-bold text-white text-base tracking-wider flex items-center gap-2">
+            CIKGU AZRUL
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
+          <p class="text-[10px] font-mono uppercase text-slate-400 tracking-widest">MRSM Merbok • Kedah</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#hero" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Utama</a>
+        <a href="#tentang-saya" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Tentang</a>
+        <a href="#kepakaran" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Kepakaran</a>
+        <a href="#projek" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Projek Pilihan</a>
+        <a href="#tutorial-ai" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Tutorial AI</a>
+        <a href="#hubungi" class="text-slate-300 hover:text-neon-red transition-colors nav-link" onclick="playClickSound()">Hubungi</a>
+      </nav>
+
+      <!-- Action Button & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#hubungi" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neon-red/15 hover:bg-neon-red text-white text-xs font-semibold tracking-wider uppercase border border-neon-red/40 hover:border-neon-red transition-all duration-300 hover:shadow-lg hover:shadow-neon-red/40" onclick="playClickSound()">
+          <span>Jemput Bengkel</span>
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-neon-red group-hover:text-white"></i>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu Overlay -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-4 top-24 glass-panel rounded-2xl p-6 shadow-2xl border border-white/10 hidden flex-col gap-4 z-50">
+      <div class="flex flex-col gap-3 font-medium text-base">
+        <a href="#hero" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Utama</a>
+        <a href="#tentang-saya" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Tentang Cikgu Azrul</a>
+        <a href="#kepakaran" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Kepakaran & Kemahiran</a>
+        <a href="#projek" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Projek Pilihan</a>
+        <a href="#tutorial-ai" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Tutorial & Bengkel AI</a>
+        <a href="#hubungi" class="mobile-nav-link text-slate-200 hover:text-neon-red py-2 px-3 rounded-lg hover:bg-white/5" onclick="closeMobileMenu()">Hubungi & Kolaborasi</a>
+      </div>
+      <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+        <span>MRSM Merbok, Kedah</span>
+        <span class="text-neon-red font-mono">MIE EXPERT 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 1. HERO SECTION (CINEMATIC 3D PARALLAX)    -->
+  <!-- ========================================== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden bg-grid-tech">
+
+    <!-- Red Ambient Center Glow Behind Portrait -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] bg-radial from-neon-red/35 via-rose-600/15 to-transparent rounded-full blur-[90px] pointer-events-none z-10 animate-pulse-glow"></div>
+
+    <!-- LAYER 1: GIANT TYPOGRAPHY BEHIND PORTRAIT -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none overflow-hidden" id="hero-bg-text-layer">
+      <div class="giant-bg-text text-[15vw] md:text-[14vw] tracking-tighter text-center leading-none" id="giant-name-1">
+        CIKGU
+      </div>
+      <div class="giant-bg-text text-[15vw] md:text-[14vw] tracking-tighter text-center leading-none -mt-4 sm:-mt-8 text-white/5 -webkit-text-stroke-1.5" id="giant-name-2">
+        AZRUL
+      </div>
+    </div>
+
+    <!-- MAIN HERO CONTENT CONTAINER -->
+    <div class="relative z-20 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[82vh]">
+
+      <!-- Left Column: Introduction & Pitch (Desktop 4 Cols) -->
+      <div class="lg:col-span-4 flex flex-col items-start justify-center order-2 lg:order-1 text-center lg:text-left z-30" id="hero-left-col">
+        
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel-red text-xs font-mono text-rose-300 mb-5 border border-neon-red/30 shadow-lg shadow-neon-red/10 mx-auto lg:mx-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>SEDIA UNTUK BENGKEL & INOVASI</span>
+        </div>
+
+        <!-- Role Badges & Main Catchphrase -->
+        <h2 class="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-slate-400 mb-2">
+          Pendidik Sains Komputer // MIE Expert
+        </h2>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight leading-[1.15] mb-6">
+          Memperkasa <span class="text-gradient-red">Pendidikan Digital</span> & Generasi Berdaya <span class="text-gradient-fire">Kreatif AI</span>.
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-300/90 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+          Selamat datang ke ruang inovasi <strong class="text-white font-semibold">Cikgu Azrul</strong> dari Maktab Rendah Sains MARA (MRSM) Merbok, Kedah. Menerobos sempadan bilik darjah konvensional menerusi Sains Komputer, pembangunan aplikasi, dan kecerdasan buatan terapan.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
+          <a href="#tentang-saya" class="btn-magnetic btn-neon-glow inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-neon-red hover:bg-neon-crimson text-white font-display font-bold text-sm tracking-wider uppercase transition-all duration-300" onclick="playClickSound()">
+            <span>KENALI SAYA</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="#projek" class="btn-magnetic inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl glass-panel hover:bg-white/10 text-white font-display font-bold text-sm tracking-wider uppercase border border-white/15 hover:border-neon-red/60 transition-all duration-300" onclick="playClickSound()">
+            <span>TEROKAI PROJEK</span>
+            <i data-lucide="layers" class="w-4 h-4 text-neon-red"></i>
+          </a>
+        </div>
+
+        <!-- Quick Stats Grid (Mobile & Desktop) -->
+        <div class="grid grid-cols-3 gap-4 pt-8 mt-8 border-t border-white/10 w-full">
+          <div>
+            <div class="text-xl sm:text-2xl font-display font-extrabold text-white">10+</div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Tahun Dedikasi</div>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-display font-extrabold text-neon-red">MIEE</div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Global Fellow</div>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-display font-extrabold text-white">100%</div>
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Fokus Inovasi</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Center Column: Layered Cutout Portrait of Cikgu Azrul (Desktop 5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col items-center justify-end relative order-1 lg:order-2 min-h-[420px] sm:min-h-[560px]" id="hero-portrait-col">
+        
+        <!-- Backlight Rim Glow -->
+        <div class="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full bg-gradient-to-t from-neon-red/40 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+        <!-- The Portrait Image -->
+        <div class="relative w-full max-w-[340px] sm:max-w-[440px] z-20 flex justify-center items-end" id="hero-portrait-wrapper">
+          <img 
+            src="gambar/azrul.png" 
+            alt="Cikgu Azrul - Pendidik Sains Komputer MRSM Merbok & Microsoft Innovative Educator Expert" 
+            class="portrait-glow w-full h-auto object-contain max-h-[580px] drop-shadow-[0_25px_45px_rgba(0,0,0,0.85)] filter contrast-105"
+            id="hero-portrait"
+            loading="eager"
+          />
+
+          <!-- Ambient Bottom Fade Gradient so portrait blends seamlessly -->
+          <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-night via-night/60 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- Floating HUD Pill Left: MIE Expert -->
+        <div class="absolute -left-2 sm:left-2 top-20 glass-panel px-4 py-2.5 rounded-2xl shadow-2xl border border-white/10 z-30 animate-float-slow hidden sm:flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center border border-sky-500/30">
+            <i data-lucide="award" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-white leading-tight">MIE Expert</p>
+            <p class="text-[10px] text-slate-400 font-mono">Microsoft Innovative Educator</p>
+          </div>
+        </div>
+
+        <!-- Floating HUD Pill Right: MRSM Merbok -->
+        <div class="absolute -right-2 sm:right-2 bottom-24 glass-panel px-4 py-2.5 rounded-2xl shadow-2xl border border-white/10 z-30 animate-float-reverse hidden sm:flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-neon-red/20 text-neon-red flex items-center justify-center border border-neon-red/30">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <p class="text-xs font-bold text-white leading-tight">MRSM Merbok</p>
+            <p class="text-[10px] text-slate-400 font-mono">Kedah Darul Aman</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Highlights & Focus Areas (Desktop 3 Cols) -->
+      <div class="lg:col-span-3 flex flex-col gap-4 order-3 z-30" id="hero-right-col">
+        
+        <!-- Interactive Card 1: Sains Komputer -->
+        <div class="glass-panel p-4 rounded-2xl border border-white/10 hover:border-neon-red/40 transition-all duration-300 group cursor-default">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-xl bg-neon-red/20 text-neon-red flex items-center justify-center group-hover:bg-neon-red group-hover:text-white transition-all">
+              <i data-lucide="terminal" class="w-4 h-4"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white font-display">Sains Komputer</h3>
+          </div>
+          <p class="text-xs text-slate-300/80 leading-relaxed">
+            Membudayakan computational thinking, asas sintaks Python, algoritma & web dev di MRSM.
+          </p>
+        </div>
+
+        <!-- Interactive Card 2: AI & Prompt Engineering -->
+        <div class="glass-panel p-4 rounded-2xl border border-white/10 hover:border-neon-red/40 transition-all duration-300 group cursor-default">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center group-hover:bg-rose-500 group-hover:text-white transition-all">
+              <i data-lucide="cpu" class="w-4 h-4"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white font-display">Kecerdasan Buatan (AI)</h3>
+          </div>
+          <p class="text-xs text-slate-300/80 leading-relaxed">
+            Eksplorasi LLM, automasi RPH pintar, dan panduan etika AI untuk institusi pendidikan.
+          </p>
+        </div>
+
+        <!-- Interactive Card 3: Pembangunan Apps & EduTech -->
+        <div class="glass-panel p-4 rounded-2xl border border-white/10 hover:border-neon-red/40 transition-all duration-300 group cursor-default">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+              <i data-lucide="code-2" class="w-4 h-4"></i>
+            </div>
+            <h3 class="text-sm font-bold text-white font-display">Sistem Pengurusan</h3>
+          </div>
+          <p class="text-xs text-slate-300/80 leading-relaxed">
+            Membangunkan aplikasi Google Apps Script, sistem tempahan bilik & kuiz gamifikasi real-time.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <a href="#tentang-saya" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-slate-400 hover:text-neon-red transition-colors group" aria-label="Tatal ke bawah">
+      <span class="text-[10px] font-mono tracking-widest uppercase">TEROKA LEBIH LANJUT</span>
+      <div class="w-5 h-9 rounded-full border-2 border-white/20 group-hover:border-neon-red flex items-start justify-center p-1 transition-colors">
+        <div class="w-1.5 h-2 bg-neon-red rounded-full animate-bounce"></div>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 2. ABOUT ME SECTION (BIOGRAFI & FALSAFAH)  -->
+  <!-- ========================================== -->
+  <section id="tentang-saya" class="py-24 px-4 sm:px-8 relative z-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="flex flex-col items-start mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-3 border border-neon-red/20">
+          <span>// 01. TENTANG SAYA</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+          Menyemai Jiwa Inovasi di <span class="text-gradient-red">Bumi Merbok</span>.
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
+          Pengenalan profesional mengenai Mohd Azrul Che Mustapha — guru, pencipta alatan digital, dan penyokong teguh pendemokrasian teknologi pendidikan.
+        </p>
+      </div>
+
+      <!-- Bento Grid About Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+        <!-- Column 1: Narrative Biography (7 Cols) -->
+        <div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-2xl">👨🏻‍🏫</span>
+              <h3 class="text-xl sm:text-2xl font-display font-bold text-white">
+                Mohd Azrul Che Mustapha
+              </h3>
+              <span class="text-xs px-2.5 py-1 rounded bg-white/10 font-mono text-slate-300">Cikgu Azrul</span>
+            </div>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Sebagai seorang <strong class="text-white">Pendidik Sains Komputer di Maktab Rendah Sains MARA (MRSM) Merbok, Kedah</strong>, saya berpegang kepada prinsip bahawa bilik darjah masa kini perlu mencerminkan landskap industri sebenar. Pendidikan bukan sekadar menghafal sintaks, tetapi membina keupayaan menyelesaikan masalah dunia nyata melalui logik komputasi.
+            </p>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Pengiktirafan sebagai <strong class="text-neon-red font-semibold">Microsoft Innovative Educator Expert (MIEE)</strong> telah membuka ruang kolaborasi global dalam meneroka metodologi pedagogi terkehadapan. Minat mendalam saya terhadap perkembangan <strong class="text-white">Kecerdasan Buatan (Generative AI)</strong> mendorong saya giat menganjurkan bengkel praktikal dan membina panduan aplikasi AI untuk membantu guru-guru menjimatkan masa penyediaan bahan pengajaran.
+            </p>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Di samping pengajaran dalam kelas, saya aktif membina penyelesaian perisian 'in-house' berasaskan Google Apps Script dan web moden bagi mengautomasikan pengurusan sekolah dan memperkasa komuniti pendidik ke arah institusi tanpa kertas (paperless).
+            </p>
+          </div>
+
+          <!-- Quote Box -->
+          <div class="mt-8 pt-6 border-t border-white/10 relative">
+            <i data-lucide="quote" class="w-8 h-8 text-neon-red/30 absolute -top-4 right-2"></i>
+            <p class="text-sm italic font-medium text-slate-200">
+              "Teknologi tidak akan pernah menggantikan guru yang hebat, tetapi teknologi di tangan guru yang berjiwa besar mampu mengubah masa depan anak bangsa."
+            </p>
+            <div class="text-xs text-neon-red font-mono mt-2 font-semibold">
+              — Cikgu Azrul, MRSM Merbok
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: 4-Item Credibility & Key Milestones Bento (5 Cols) -->
+        <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <!-- Card 1: MIE Expert -->
+          <div class="card-3d-wrap">
+            <div class="card-3d-inner glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+              <div class="card-glare"></div>
+              <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center mb-4 border border-sky-500/20 group-hover:scale-110 transition-transform">
+                <i data-lucide="award" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">Pengiktirafan</span>
+                <h4 class="text-base font-bold text-white font-display mt-1">Microsoft Innovative Educator Expert</h4>
+                <p class="text-xs text-slate-400 mt-2">Ahli komuniti pendidik inovatif global Microsoft yang memacu transformasi bilik darjah.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Institusi MRSM -->
+          <div class="card-3d-wrap">
+            <div class="card-3d-inner glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+              <div class="card-glare"></div>
+              <div class="w-12 h-12 rounded-xl bg-neon-red/10 text-neon-red flex items-center justify-center mb-4 border border-neon-red/20 group-hover:scale-110 transition-transform">
+                <i data-lucide="school" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-neon-red uppercase tracking-wider">Institusi MARA</span>
+                <h4 class="text-base font-bold text-white font-display mt-1">MRSM Merbok, Kedah</h4>
+                <p class="text-xs text-slate-400 mt-2">Membimbing barisan pelajar cemerlang dalam silibus Sains Komputer dan inovasi STEM.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: AI in Education -->
+          <div class="card-3d-wrap">
+            <div class="card-3d-inner glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+              <div class="card-glare"></div>
+              <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-4 border border-purple-500/20 group-hover:scale-110 transition-transform">
+                <i data-lucide="sparkles" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-purple-400 uppercase tracking-wider">Advokasi</span>
+                <h4 class="text-base font-bold text-white font-display mt-1">AI Education Champion</h4>
+                <p class="text-xs text-slate-400 mt-2">Membudayakan penggunaan alat AI Generatif secara beretika, pantas dan berimpak tinggi.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Pembangun Sistem -->
+          <div class="card-3d-wrap">
+            <div class="card-3d-inner glass-panel p-6 rounded-2xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+              <div class="card-glare"></div>
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                <i data-lucide="layout-grid" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Solusi Digital</span>
+                <h4 class="text-base font-bold text-white font-display mt-1">Full-Stack EdTech Creator</h4>
+                <p class="text-xs text-slate-400 mt-2">Menghasilkan web apps, automasi Google Apps Script dan sistem penilaian masa nyata.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 3. EXPERTISE SECTION (5 DOMAIN KEPAKARAN)  -->
+  <!-- ========================================== -->
+  <section id="kepakaran" class="py-24 px-4 sm:px-8 relative z-20 border-t border-white/5 bg-grid-tech">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="flex flex-col items-start mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-3 border border-neon-red/20">
+          <span>// 02. KEPAKARAN & KEMAHIRAN</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+          Domain Kepakaran <span class="text-gradient-red">Pendidikan Masa Depan</span>.
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
+          Kombinasi kemahiran teknikal pengaturcaraan dan pedagogi interaktif untuk merapatkan jurang antara kurikulum konvensional dan tuntutan era kecerdasan buatan.
+        </p>
+      </div>
+
+      <!-- 5 Expertise Domain Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+
+        <!-- Domain 1: AI & Prompt Engineering -->
+        <div class="card-3d-wrap">
+          <div class="card-3d-inner glass-panel p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div class="card-glare"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-red/20 to-rose-600/30 text-neon-red flex items-center justify-center border border-neon-red/30 group-hover:scale-110 transition-transform shadow-lg shadow-neon-red/10">
+                  <i data-lucide="bot" class="w-7 h-7"></i>
+                </div>
+                <span class="text-xs font-mono text-neon-red font-bold px-3 py-1 rounded-full bg-neon-red/10 border border-neon-red/20">01 / TERAS</span>
+              </div>
+              <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-neon-red transition-colors">
+                Kecerdasan Buatan (AI) & Prompt Engineering
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Menguasai strategi prompt berstruktur bagi penjanaan RPH, rubrik pentaksiran, instrumen soalan KBAT, dan pembezaan pembelajaran murid menggunakan Gemini, Claude, ChatGPT serta Microsoft Copilot.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Prompt Engineering</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Gemini for Edu</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Copilot</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Etika AI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain 2: Sains Komputer & Pengaturcaraan -->
+        <div class="card-3d-wrap">
+          <div class="card-3d-inner glass-panel p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div class="card-glare"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500/20 to-indigo-600/30 text-sky-400 flex items-center justify-center border border-sky-500/30 group-hover:scale-110 transition-transform shadow-lg shadow-sky-500/10">
+                  <i data-lucide="code" class="w-7 h-7"></i>
+                </div>
+                <span class="text-xs font-mono text-sky-400 font-bold px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20">02 / TERAS</span>
+              </div>
+              <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-sky-400 transition-colors">
+                Sains Komputer & Pengaturcaraan
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Pakar dalam penyampaian kurikulum Sains Komputer SPM & MRSM. Penguasaan praktikal dalam sintaks Python, pemikiran komputasional, reka bentuk algoritma, struktur data, dan pengaturcaraan web HTML/CSS/JS.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Python 3</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">JavaScript</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Computational Thinking</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Algoritma</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain 3: Ekosistem Microsoft 365 & EdTech -->
+        <div class="card-3d-wrap">
+          <div class="card-3d-inner glass-panel p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div class="card-glare"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-600/30 text-amber-400 flex items-center justify-center border border-amber-500/30 group-hover:scale-110 transition-transform shadow-lg shadow-amber-500/10">
+                  <i data-lucide="laptop" class="w-7 h-7"></i>
+                </div>
+                <span class="text-xs font-mono text-amber-400 font-bold px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">03 / INOVASI</span>
+              </div>
+              <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+                Teknologi Pendidikan & Microsoft 365
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Pakar pemanfaatan Microsoft Teams for Education, OneNote Class Notebook, Power Automate, dan Microsoft Forms dalam mewujudkan ekosistem pembelajaran kolaboratif yang tersusun dan mudah diakses.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">MS Teams</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">OneNote Notebook</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">MIE Expert</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Power Automate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain 4: Inovasi Digital & Google Apps Script -->
+        <div class="card-3d-wrap">
+          <div class="card-3d-inner glass-panel p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div class="card-glare"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-600/30 text-emerald-400 flex items-center justify-center border border-emerald-500/30 group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/10">
+                  <i data-lucide="workflow" class="w-7 h-7"></i>
+                </div>
+                <span class="text-xs font-mono text-emerald-400 font-bold px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">04 / SISTEM</span>
+              </div>
+              <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                Inovasi Digital & Pembangunan Aplikasi
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Pembangunan sistem pengurusan sekolah berasaskan Google Apps Script, Web Apps tanpa kos pelayan, sistem tempahan bilik khas, dashboard analitik pelajar dan automasi aliran kerja pentadbiran MARA.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Google Apps Script</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Serverless Web Apps</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Automasi Borang</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domain 5: Kandungan Digital & Komuniti Guru -->
+        <div class="card-3d-wrap md:col-span-2 lg:col-span-2">
+          <div class="card-3d-inner glass-panel p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-between relative overflow-hidden group">
+            <div class="card-glare"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-600/30 text-rose-400 flex items-center justify-center border border-rose-500/30 group-hover:scale-110 transition-transform shadow-lg shadow-rose-500/10">
+                  <i data-lucide="video" class="w-7 h-7"></i>
+                </div>
+                <span class="text-xs font-mono text-rose-400 font-bold px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20">05 / KOMUNITI</span>
+              </div>
+              <h3 class="text-xl font-display font-bold text-white mb-3 group-hover:text-rose-400 transition-colors">
+                Penciptaan Kandungan Digital & Pemerkasaan Pendidik
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                Menghasilkan tutorial visual berkualiti tinggi, modul panduan langkah demi langkah, dan perkongsian interaktif untuk membantu komuniti pendidik seluruh negara menguasai teknologi pengajaran terkini dengan yakin dan berkesan.
+              </p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Video Tutorial Edu</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Modul Interaktif</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Fasilitator Bengkel</span>
+                <span class="px-2.5 py-1 rounded-md bg-white/5 text-[11px] font-mono text-slate-300">Komuniti Sains Komputer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 4. FEATURED PROJECTS SECTION (PORTFOLIO)   -->
+  <!-- ========================================== -->
+  <section id="projek" class="py-24 px-4 sm:px-8 relative z-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header & Filter Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-3 border border-neon-red/20">
+            <span>// 03. PROJEK PILIHAN</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+            Inovasi Digital <span class="text-gradient-red">Telah Dibina</span>.
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
+            Koleksi aplikasi web, sistem automasi bilik darjah dan alat bantu mengajar interaktif ciptaan Cikgu Azrul.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-2 p-1.5 glass-panel rounded-2xl border border-white/10 self-start md:self-auto overflow-x-auto max-w-full">
+          <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase transition-all bg-neon-red text-white font-bold" data-filter="all" onclick="filterProjects('all', this)">Semua</button>
+          <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase transition-all text-slate-400 hover:text-white" data-filter="web" onclick="filterProjects('web', this)">Aplikasi Web</button>
+          <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase transition-all text-slate-400 hover:text-white" data-filter="automation" onclick="filterProjects('automation', this)">Automasi MRSM</button>
+          <button class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono uppercase transition-all text-slate-400 hover:text-white" data-filter="ai" onclick="filterProjects('ai', this)">Alat AI</button>
+        </div>
+      </div>
+
+      <!-- Responsive Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+
+        <!-- Project 1: Room Booking Engine -->
+        <div class="project-card card-3d-wrap" data-category="automation">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <!-- Project Header Visual -->
+            <div class="relative h-48 bg-gradient-to-br from-rose-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-neon-red/20 text-neon-red flex items-center justify-center border border-neon-red/40 group-hover:scale-110 transition-transform shadow-xl shadow-neon-red/20">
+                <i data-lucide="calendar-check" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold">
+                BEROPERASI
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-neon-red uppercase tracking-wider">Automasi Sekolah</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-neon-red transition-colors">
+                  Sistem Tempahan Fasiliti & Bilik MRSM
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Sistem tempahan dewan, makmal komputer dan bilik khas pintar berasaskan Google Apps Script yang menghapuskan konflik jadual dan menjana notifikasi emel automatik.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Google Apps Script</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">JavaScript ES6</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Paperless</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('Sistem Tempahan Fasiliti & Bilik MRSM', 'Sistem tempahan dewan, makmal komputer dan bilik khas pintar berasaskan Google Apps Script yang menghapuskan konflik jadual dan menjana notifikasi emel automatik kepada pentadbir dan guru.', ['Google Apps Script', 'Web App', 'Google Sheets API', 'HTML5/Tailwind'], 'Sistem ini dibangunkan khas untuk menyelesaikan masalah pertindihan tempahan bilik di sekolah. Pengguna boleh melihat status bilik secara masa nyata, memilih slot waktu, dan menerima pengesahan automatik.')" class="text-xs font-mono text-neon-red hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">v2.4 Production</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 2: Interactive Quiz & Real-Time Leaderboard -->
+        <div class="project-card card-3d-wrap" data-category="web">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <div class="relative h-48 bg-gradient-to-br from-indigo-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center border border-sky-500/40 group-hover:scale-110 transition-transform shadow-xl shadow-sky-500/20">
+                <i data-lucide="trophy" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-bold">
+                GAMIFIKASI
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">Aplikasi Web Interaktif</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-sky-400 transition-colors">
+                  Kuiz Interaktif & Leaderboard Real-Time
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Platform pentaksiran formatif gamifikasi dengan animasi moden (Liquid Glass UI), papan markah terkini secara langsung, dan analitik keputusan pelajar.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Glassmorphism UI</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Real-Time Data</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Gamification</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('Kuiz Interaktif & Leaderboard Real-Time', 'Platform pentaksiran formatif gamifikasi dengan animasi moden (Liquid Glass UI), papan markah terkini secara langsung, dan analitik keputusan pelajar.', ['Tailwind CSS', 'Vanilla JavaScript', 'Google Sheets DB', 'Confetti FX'], 'Aplikasi ini menggunakan Google Sheets sebagai pangkalan data tanpa kos, membolehkan soalan dikemaskini oleh guru tanpa perlu menyentuh kod pengaturcaraan.')" class="text-xs font-mono text-sky-400 hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">MARA Academy</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 3: AI Prompt Generator untuk RPH Guru -->
+        <div class="project-card card-3d-wrap" data-category="ai">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <div class="relative h-48 bg-gradient-to-br from-purple-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/40 group-hover:scale-110 transition-transform shadow-xl shadow-purple-500/20">
+                <i data-lucide="sparkles" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] font-mono font-bold">
+                ALAT AI GURU
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-purple-400 uppercase tracking-wider">Kecerdasan Buatan Terapan</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-purple-400 transition-colors">
+                  AI Lesson Plan & Prompt Crafter
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Penjana arahan prompt berstruktur mengikut format Dokumen Standard Kurikulum & Pentaksiran (DSKP) Malaysia untuk memudahkan persediaan RPH berkualiti tinggi.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Prompt Engineering</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">DSKP Compliance</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">EdTech</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('AI Lesson Plan & Prompt Crafter', 'Penjana arahan prompt berstruktur mengikut format DSKP Malaysia untuk memudahkan persediaan RPH berkualiti tinggi.', ['Gemini API', 'DSKP Framework', 'Prompt Architecture', 'Clipboard API'], 'Membantu guru menjana modul pembelajaran interaktif, soalan kuiz pemikiran aras tinggi (KBAT) dan aktiviti bilik darjah PAK-21 dalam beberapa saat sahaja.')" class="text-xs font-mono text-purple-400 hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">Versi Terkini</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 4: F1 in Schools STEM Innovation Toolkit -->
+        <div class="project-card card-3d-wrap" data-category="web">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <div class="relative h-48 bg-gradient-to-br from-amber-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/40 group-hover:scale-110 transition-transform shadow-xl shadow-amber-500/20">
+                <i data-lucide="flag" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-mono font-bold">
+                STEM / F1
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Inovasi Kejuruteraan</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-amber-400 transition-colors">
+                  Sistem Teknikal & Portofolio F1 in Schools
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Portal pengurusan dokumentasi teknikal, analisis aerodinamik dan log aktiviti pasukan inovasi F1 in Schools MRSM Merbok.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">STEM Education</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Technical Portfolio</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Web Portal</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('Sistem Teknikal F1 in Schools', 'Portal pengurusan dokumentasi teknikal, analisis aerodinamik dan log aktiviti pasukan inovasi F1 in Schools MRSM Merbok.', ['Responsive Web', 'Design Portfolio', 'STEM Challenge', 'Analytics'], 'Membantu pasukan pelajar menyusun portfolio pertandingan peringkat kebangsaan dan antarabangsa secara digital dan interaktif.')" class="text-xs font-mono text-amber-400 hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">MRSM Merbok</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 5: Hub Pembelajaran Sains Komputer SPM -->
+        <div class="project-card card-3d-wrap" data-category="web">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <div class="relative h-48 bg-gradient-to-br from-emerald-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40 group-hover:scale-110 transition-transform shadow-xl shadow-emerald-500/20">
+                <i data-lucide="book-open" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono font-bold">
+                SUMBER SPM
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Pusat Rujukan Pelajar</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-emerald-400 transition-colors">
+                  Repositori Kod & Modul Sains Komputer
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Hab digital terbuka memuatkan contoh kod Python, bank soalan topikal, nota pseudokod dan carta alir interaktif untuk kemudahan ulangkaji murid.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Python 3</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">SPM Format</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Open Resource</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('Repositori Kod Sains Komputer', 'Hab digital terbuka memuatkan contoh kod Python, bank soalan topikal, nota pseudokod dan carta alir interaktif untuk kemudahan ulangkaji murid.', ['Python Syntax', 'Interactive Quizzes', 'SPM Notes', 'Searchable Index'], 'Direka untuk membantu murid mengukuhkan kefahaman sintaks asas, struktur kawalan pilihan, dan gelung melalui contoh kod yang boleh diuji terus.')" class="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">Buka Akses</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Project 6: Modul Bengkel AI Pendidik MARA -->
+        <div class="project-card card-3d-wrap" data-category="ai">
+          <div class="card-3d-inner glass-panel rounded-3xl border border-white/10 overflow-hidden flex flex-col h-full group">
+            <div class="card-glare"></div>
+            
+            <div class="relative h-48 bg-gradient-to-br from-pink-950/60 via-night-surface to-night flex items-center justify-center p-6 border-b border-white/10 overflow-hidden">
+              <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+              <div class="w-16 h-16 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500/40 group-hover:scale-110 transition-transform shadow-xl shadow-rose-500/20">
+                <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+              </div>
+              <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[10px] font-mono font-bold">
+                LATIHAN GURU
+              </div>
+            </div>
+
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <div>
+                <span class="text-xs font-mono text-rose-400 uppercase tracking-wider">Modul Bengkel</span>
+                <h3 class="text-xl font-display font-bold text-white mt-1 group-hover:text-rose-400 transition-colors">
+                  Siri Bengkel AI Generatif Pendidik MARA
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-3 leading-relaxed">
+                  Koleksi slaid interaktif, latihan 'hands-on' dan 'cheat sheet' prompt untuk siri bengkel AI anjuran maktab dan komuniti pendidik.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Workshop Deck</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Hands-on Lab</span>
+                  <span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-mono text-slate-300">Copilot / Gemini</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button onclick="openProjectModal('Siri Bengkel AI Generatif Pendidik MARA', 'Koleksi slaid interaktif, latihan hands-on dan cheat sheet prompt untuk siri bengkel AI anjuran maktab dan komuniti pendidik.', ['Slaid Interaktif', 'Prompt Templates', 'Pedagogi AI', 'Etika Data'], 'Telah digunakan dalam pelbagai sesi perkongsian peringkat maktab dan kebangsaan bagi melatih para guru memanfaatkan potensi AI.')" class="text-xs font-mono text-rose-400 hover:underline flex items-center gap-1.5 font-bold">
+                    <span>Lihat Perincian</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-[10px] text-slate-400 font-mono">Modul Rasmi</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 5. AI TUTORIALS & PROMPT PLAYGROUND        -->
+  <!-- ========================================== -->
+  <section id="tutorial-ai" class="py-24 px-4 sm:px-8 relative z-20 border-t border-white/5 bg-grid-tech">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="flex flex-col items-start mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-3 border border-neon-red/20">
+          <span>// 04. TUTORIAL & BENGKEL AI</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+          Panduan Praktikal & <span class="text-gradient-red">Eksplorasi AI</span>.
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
+          Perkongsian tutorial langkah demi langkah dan templat prompt sedia guna yang boleh disalin terus ke Gemini, Claude atau ChatGPT untuk kegunaan bilik darjah anda.
+        </p>
+      </div>
+
+      <!-- Two-Column Showcase: Tutorials & Interactive Prompt Playground -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Column 1: Featured Tutorial List (6 Cols) -->
+        <div class="lg:col-span-6 flex flex-col gap-4">
+          
+          <!-- Tutorial Item 1 -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-neon-red/40 transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-neon-red/20 text-neon-red flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="play-circle" class="w-6 h-6"></i>
+              </div>
+              <div class="flex-grow">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                  <span>SIRI 01 • PROMPT AI</span>
+                  <span class="text-neon-red">12 MINIT BACAAN</span>
+                </div>
+                <h3 class="text-base font-bold text-white group-hover:text-neon-red transition-colors font-display">
+                  Panduan Menjana RPH Lengkap Format KSSM Menggunakan Gemini AI
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-2 leading-relaxed">
+                  Teknik 'System Prompting' dengan memasukkan standard pembelajaran dan kriteria kejayaan agar output AI bertepatan dengan DSKP tanpa perlu banyak suntingan.
+                </p>
+                <div class="mt-4 flex items-center gap-4 text-xs font-mono">
+                  <button onclick="loadPromptSample(1)" class="text-neon-red hover:underline flex items-center gap-1 font-bold">
+                    <span>Uji Prompt Ini</span>
+                    <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-slate-400">• Untuk Guru Sains Komputer & STEM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Item 2 -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-sky-500/40 transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="file-code" class="w-6 h-6"></i>
+              </div>
+              <div class="flex-grow">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                  <span>SIRI 02 • GOOGLE APPS SCRIPT</span>
+                  <span class="text-sky-400">18 MINIT BACAAN</span>
+                </div>
+                <h3 class="text-base font-bold text-white group-hover:text-sky-400 transition-colors font-display">
+                  Bina Sistem Pengurusan Sekolah Tanpa Kos Server
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-2 leading-relaxed">
+                  Langkah demi langkah mengubah Google Spreadsheet menjadi API backend dan menghubungkannya dengan borang web HTML5 yang pantas dan selamat.
+                </p>
+                <div class="mt-4 flex items-center gap-4 text-xs font-mono">
+                  <button onclick="loadPromptSample(2)" class="text-sky-400 hover:underline flex items-center gap-1 font-bold">
+                    <span>Uji Prompt Ini</span>
+                    <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-slate-400">• Asas Automasi Paperless</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Item 3 -->
+          <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all duration-300 group">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i data-lucide="help-circle" class="w-6 h-6"></i>
+              </div>
+              <div class="flex-grow">
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-1">
+                  <span>SIRI 03 • KBAT & GAMIFIKASI</span>
+                  <span class="text-purple-400">10 MINIT BACAAN</span>
+                </div>
+                <h3 class="text-base font-bold text-white group-hover:text-purple-400 transition-colors font-display">
+                  Mencipta Soalan KBAT Sains Komputer Berdasarkan Senario Kehidupan Sebenar
+                </h3>
+                <p class="text-xs text-slate-300/80 mt-2 leading-relaxed">
+                  Bagaimana menggunakan AI untuk menghasilkan soalan kajian kes algoritma bertingkat dengan skema pemarkahan analitikal yang tepat.
+                </p>
+                <div class="mt-4 flex items-center gap-4 text-xs font-mono">
+                  <button onclick="loadPromptSample(3)" class="text-purple-400 hover:underline flex items-center gap-1 font-bold">
+                    <span>Uji Prompt Ini</span>
+                    <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span class="text-slate-400">• Pentaksiran Berkesan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2: Interactive Prompt Playground (6 Cols) -->
+        <div class="lg:col-span-6 glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 relative overflow-hidden">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-rose-500 animate-ping"></div>
+              <h3 class="text-sm font-mono font-bold text-white uppercase tracking-wider">
+                Interactive Prompt Playground
+              </h3>
+            </div>
+            <span class="text-[10px] font-mono text-neon-red bg-neon-red/10 px-2 py-0.5 rounded border border-neon-red/20">SALIN & GUNA</span>
+          </div>
+
+          <p class="text-xs text-slate-300 mb-4">
+            Pilih templat prompt di bawah atau muatkan dari senarai tutorial untuk disalin terus ke AI pilihan anda:
+          </p>
+
+          <!-- Prompt Preset Tabs -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            <button onclick="loadPromptSample(1)" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-neon-red text-white font-semibold transition-all">Prompt RPH</button>
+            <button onclick="loadPromptSample(2)" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 transition-all">Prompt Google Script</button>
+            <button onclick="loadPromptSample(3)" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 transition-all">Prompt Soalan KBAT</button>
+          </div>
+
+          <!-- Code Box -->
+          <div class="relative bg-night/90 rounded-2xl p-5 border border-white/10 font-mono text-xs text-slate-200 leading-relaxed overflow-x-auto min-h-[200px]" id="prompt-display-box">
+            <pre class="whitespace-pre-wrap" id="prompt-text">Bertindak sebagai Pakar Pedagogi Sains Komputer Malaysia. 
+
+Sediakan satu Rancangan Pengajaran Harian (RPH) bagi topik [Topik: Cth. Algoritma Carian Linear] untuk pelajar Tingkatan 4 Sains Komputer MRSM.
+
+Kriteria RPH mestilah mengandungi:
+1. Standard Kandungan & Pembelajaran mengikut DSKP.
+2. Aktiviti 'Unplugged' (tanpa komputer) selama 20 minit untuk pemahaman konsep.
+3. Aktiviti pengaturcaraan hands-on dalam Python selama 30 minit.
+4. Pentaksiran formatif pantas (3 soalan semakan kefahaman).
+5. Elemen pembezaan murid (pemulihan dan pengayaan).</pre>
+          </div>
+
+          <!-- Copy Button & Notification -->
+          <div class="mt-4 flex items-center justify-between">
+            <button onclick="copyPromptToClipboard()" id="copy-prompt-btn" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neon-red hover:bg-neon-crimson text-white text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-lg shadow-neon-red/30">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span id="copy-btn-text">Salin Prompt Ini</span>
+            </button>
+            <span class="text-[11px] font-mono text-emerald-400 hidden" id="copy-success-badge">
+              ✓ Telah disalin ke papan klip!
+            </span>
+          </div>
+
+          <!-- Workshop Invitation Banner -->
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/[0.02] p-4 rounded-2xl border border-white/5">
+            <div>
+              <p class="text-xs font-bold text-white">Ingin Mengadakan Bengkel AI di Sekolah Anda?</p>
+              <p class="text-[11px] text-slate-400">Modul disesuaikan mengikut keperluan guru & pentadbir.</p>
+            </div>
+            <a href="#hubungi" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-neon-red text-white text-xs font-bold font-mono transition-colors whitespace-nowrap">
+              Hubungi Sekarang →
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 6. CONTACT SECTION (HUBUNGI & KOLABORASI)  -->
+  <!-- ========================================== -->
+  <section id="hubungi" class="py-24 px-4 sm:px-8 relative z-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="flex flex-col items-start mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-3 border border-neon-red/20">
+          <span>// 05. HUBUNGI & JALIN KERJASAMA</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+          Mari Membina Masa Depan <span class="text-gradient-red">Pendidikan Digital</span>.
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
+          Terbuka untuk jemputan sebagai penceramah bengkel AI, konsultan inovasi digital sekolah, kolaborasi projek perisian, atau sesi perkongsian komuniti guru.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+
+        <!-- Column 1: Contact Info & Channels (5 Cols) -->
+        <div class="lg:col-span-5 glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-display font-bold text-white mb-2">Maklumat Perhubungan</h3>
+            <p class="text-xs text-slate-400 mb-8 font-mono">
+              Sila pilih saluran yang paling mudah untuk anda berhubung:
+            </p>
+
+            <div class="flex flex-col gap-6">
+
+              <!-- Location -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-neon-red/10 text-neon-red flex items-center justify-center flex-shrink-0 border border-neon-red/20">
+                  <i data-lucide="map-pin" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-mono text-slate-400 uppercase">Lokasi Bertugas</h4>
+                  <p class="text-sm font-bold text-white mt-0.5">MRSM Merbok</p>
+                  <p class="text-xs text-slate-300">Peti Surat 22, 08400 Merbok, Kedah Darul Aman</p>
+                </div>
+              </div>
+
+              <!-- Roles -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center flex-shrink-0 border border-sky-500/20">
+                  <i data-lucide="briefcase" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-mono text-slate-400 uppercase">Jawatan & Tanggungjawab</h4>
+                  <p class="text-sm font-bold text-white mt-0.5">Guru Sains Komputer & Inovasi</p>
+                  <p class="text-xs text-slate-300">Microsoft Innovative Educator Expert (MIEE)</p>
+                </div>
+              </div>
+
+              <!-- WhatsApp Quick Link -->
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center flex-shrink-0 border border-emerald-500/20">
+                  <i data-lucide="message-circle" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-xs font-mono text-slate-400 uppercase">Perbincangan Pantas</h4>
+                  <a href="https://wa.me/?text=Salam%20Cikgu%20Azrul,%20saya%20berminat%20untuk%20menjemput%20tuan%20untuk%20bengkel%20AI%20pendidikan" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-emerald-400 hover:underline flex items-center gap-1.5 mt-0.5">
+                    <span>Mesej Terus Melalui WhatsApp</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  </a>
+                  <p class="text-[11px] text-slate-400">Respon dalam tempoh 24 jam waktu bekerja.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Social Links Grid -->
+          <div class="mt-8 pt-8 border-t border-white/10">
+            <h4 class="text-xs font-mono text-slate-400 uppercase mb-4 tracking-wider">Rangkaian Digital</h4>
+            <div class="flex flex-wrap gap-3">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-panel-subtle hover:bg-neon-red text-slate-300 hover:text-white transition-all flex items-center gap-2 text-xs font-mono" title="LinkedIn Cikgu Azrul">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-panel-subtle hover:bg-neon-red text-slate-300 hover:text-white transition-all flex items-center gap-2 text-xs font-mono" title="YouTube Cikgu Azrul">
+                <i data-lucide="youtube" class="w-4 h-4"></i>
+                <span>YouTube</span>
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-panel-subtle hover:bg-neon-red text-slate-300 hover:text-white transition-all flex items-center gap-2 text-xs font-mono" title="TikTok Cikgu Azrul">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+                <span>TikTok Edu</span>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-panel-subtle hover:bg-neon-red text-slate-300 hover:text-white transition-all flex items-center gap-2 text-xs font-mono" title="GitHub Cikgu Azrul">
+                <i data-lucide="github" class="w-4 h-4"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2: Interactive Contact Form (7 Cols) -->
+        <div class="lg:col-span-7 glass-panel p-8 sm:p-10 rounded-3xl border border-white/10">
+          <h3 class="text-2xl font-display font-bold text-white mb-2">Hantar Mesej atau Jemputan</h3>
+          <p class="text-xs text-slate-400 mb-6 font-mono">
+            Sila lengkapkan borang di bawah untuk jemputan rasmi atau sebarang pertanyaan kolaborasi:
+          </p>
+
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="flex flex-col gap-5">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Name -->
+              <div>
+                <label for="name" class="block text-xs font-mono uppercase text-slate-300 mb-2">Nama Penuh *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required 
+                  placeholder="Cth: Dr. Ahmad / Cikgu Siti" 
+                  class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
+                >
+              </div>
+
+              <!-- Organization / School -->
+              <div>
+                <label for="organization" class="block text-xs font-mono uppercase text-slate-300 mb-2">Sekolah / Organisasi *</label>
+                <input 
+                  type="text" 
+                  id="organization" 
+                  name="organization" 
+                  required 
+                  placeholder="Cth: MRSM / SMK / PPD / IPG" 
+                  class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
+                >
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-xs font-mono uppercase text-slate-300 mb-2">Alamat Emel *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required 
+                  placeholder="emel@anda.edu.my" 
+                  class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
+                >
+              </div>
+
+              <!-- Phone / WhatsApp -->
+              <div>
+                <label for="phone" class="block text-xs font-mono uppercase text-slate-300 mb-2">No. Telefon / WhatsApp</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  placeholder="+60 12-345 6789" 
+                  class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white placeholder-slate-500 transition-colors"
+                >
+              </div>
+            </div>
+
+            <!-- Category -->
+            <div>
+              <label for="subject" class="block text-xs font-mono uppercase text-slate-300 mb-2">Tujuan Mesej *</label>
+              <select 
+                id="subject" 
+                name="subject" 
+                required 
+                class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white transition-colors"
+              >
+                <option value="Jemputan Bengkel AI Guru" class="bg-night">Jemputan Penceramah / Bengkel AI Guru</option>
+                <option value="Perkongsian Sains Komputer" class="bg-night">Sesi Motivasi / Perkongsian Sains Komputer</option>
+                <option value="Inovasi Google Apps Script" class="bg-night">Konsultasi Sistem Google Apps Script / Web App</option>
+                <option value="Kolaborasi Projek EduTech" class="bg-night">Kolaborasi Projek Inovasi Digital</option>
+                <option value="Lain-lain" class="bg-night">Pertanyaan Am</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-xs font-mono uppercase text-slate-300 mb-2">Butiran Mesej / Cadangan Tarikh *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="4" 
+                required 
+                placeholder="Nyatakan cadangan tarikh, sasaran peserta, atau perincian kolaborasi..."
+                class="w-full px-4 py-3 rounded-xl bg-night/80 border border-white/10 focus:border-neon-red focus:outline-none text-sm text-white placeholder-slate-500 transition-colors resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+              type="submit" 
+              id="submit-btn" 
+              class="w-full py-4 rounded-xl bg-neon-red hover:bg-neon-crimson text-white font-display font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:shadow-xl hover:shadow-neon-red/30 flex items-center justify-center gap-2 group"
+            >
+              <span id="btn-text">HANTAR MESEJ RASMI</span>
+              <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform" id="submit-icon"></i>
+            </button>
+
+            <!-- Success Notification Banner -->
+            <div id="form-success-alert" class="hidden p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono flex items-center gap-3">
+              <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+              <span>Terima kasih! Mesej anda telah berjaya dihantar. Cikgu Azrul akan meneliti dan menghubungi anda dalam masa terdekat.</span>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="py-16 px-4 sm:px-8 border-t border-white/10 relative z-20 bg-night/95">
+    <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+
+      <!-- Oversized Footer Typography -->
+      <div class="font-display font-black text-2xl sm:text-4xl text-white tracking-widest uppercase mb-4 flex items-center gap-3">
+        <span>CIKGU AZRUL</span>
+        <span class="text-neon-red font-mono text-xl sm:text-2xl">//</span>
+        <span class="text-slate-400 font-normal">MRSM MERBOK</span>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-400 max-w-lg mb-8 leading-relaxed">
+        Komited memperkasakan anak bangsa melalui teknologi komputasi, kecerdasan buatan terapan, dan inovasi pendidikan bermaruah.
+      </p>
+
+      <!-- Nav Links Bottom -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-300 mb-8">
+        <a href="#hero" class="hover:text-neon-red transition-colors">Utama</a>
+        <a href="#tentang-saya" class="hover:text-neon-red transition-colors">Tentang Cikgu Azrul</a>
+        <a href="#kepakaran" class="hover:text-neon-red transition-colors">Kepakaran</a>
+        <a href="#projek" class="hover:text-neon-red transition-colors">Projek Pilihan</a>
+        <a href="#tutorial-ai" class="hover:text-neon-red transition-colors">Tutorial AI</a>
+        <a href="#hubungi" class="hover:text-neon-red transition-colors">Hubungi</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-[11px] font-mono text-slate-400 pt-6 border-t border-white/5 w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span>© 2026 Mohd Azrul Che Mustapha. Hak Cipta Terpelihara.</span>
+        <span class="flex items-center gap-2">
+          <span>Dibina dengan</span>
+          <span class="text-neon-red">❤️</span>
+          <span>untuk Komuniti Pendidik Malaysia</span>
+        </span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- PROJECT DETAILS MODAL DIALOG               -->
+  <!-- ========================================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+    <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-white/15 shadow-2xl relative transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="project-modal-card">
+      
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 p-2 rounded-full glass-panel hover:bg-white/10 text-slate-300 hover:text-white transition-colors" aria-label="Tutup Dialog">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-neon-red/10 text-neon-red text-xs font-mono mb-4 border border-neon-red/20">
+        <span>// PERINCIAN PROJEK</span>
+      </div>
+
+      <h3 id="modal-title" class="text-2xl font-display font-extrabold text-white mb-3">Nama Projek</h3>
+      <p id="modal-description" class="text-sm text-slate-300 leading-relaxed mb-6">Penerangan ringkas mengenai matlamat dan objektif projek ini.</p>
+
+      <div class="mb-6">
+        <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-2">Teknologi & Pendekatan</h4>
+        <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-6">
+        <h4 class="text-xs font-mono uppercase text-neon-red tracking-wider mb-1">Impak & Nilai Tambah</h4>
+        <p id="modal-impact" class="text-xs text-slate-300 leading-relaxed"></p>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+        <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl glass-panel text-xs font-mono uppercase text-slate-300 hover:text-white transition-colors">
+          Tutup
+        </button>
+        <a href="#hubungi" onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-neon-red hover:bg-neon-crimson text-white text-xs font-mono uppercase font-bold transition-all shadow-lg shadow-neon-red/30">
+          Tanya Mengenai Sistem Ini
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT SCRIPTS & MOTION LOGIC          -->
+  <!-- ========================================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ------------------------------------------
+    // Web Audio Synthesizer (Futuristic SFX)
+    // ------------------------------------------
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playClickSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.08);
+      } catch (e) {}
+    }
+
+    // Toggle Sound Button
+    const soundToggle = document.getElementById('sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+    soundToggle.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) {
+        soundIcon.setAttribute('data-lucide', 'volume-2');
+        soundToggle.classList.remove('opacity-50');
+        playClickSound();
+      } else {
+        soundIcon.setAttribute('data-lucide', 'volume-x');
+        soundToggle.classList.add('opacity-50');
+      }
+      lucide.createIcons();
+    });
+
+    // ------------------------------------------
+    // 3D Background Canvas Particles (Embers & Constellation)
+    // ------------------------------------------
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    let particles = [];
+    const particleCount = window.innerWidth < 768 ? 35 : 70;
+    let mouse = { x: width / 2, y: height / 2 };
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = -Math.random() * 0.6 - 0.2; // Float upwards like red embers
+        this.alpha = Math.random() * 0.6 + 0.2;
+        this.isRed = Math.random() > 0.4;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.y < 0) {
+          this.y = height;
+          this.x = Math.random() * width;
+        }
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.isRed ? `rgba(255, 48, 79, ${this.alpha})` : `rgba(255, 255, 255, ${this.alpha * 0.8})`;
+        ctx.shadowBlur = this.isRed ? 8 : 4;
+        ctx.shadowColor = this.isRed ? '#FF304F' : '#FFF';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Connect near particles with delicate lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 48, 79, ${0.12 * (1 - dist / 110)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    // Check prefers-reduced-motion before starting particle loop
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      animateParticles();
+    }
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // ------------------------------------------
+    // Subtle 3D Parallax Mouse Response on Hero
+    // ------------------------------------------
+    const heroSection = document.getElementById('hero');
+    const heroPortrait = document.getElementById('hero-portrait');
+    const giantName1 = document.getElementById('giant-name-1');
+    const giantName2 = document.getElementById('giant-name-2');
+
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+
+    if (!prefersReducedMotion && window.innerWidth >= 768) {
+      window.addEventListener('mousemove', (e) => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        targetX = (e.clientX - cx) / cx;
+        targetY = (e.clientY - cy) / cy;
+      });
+
+      function updateHeroParallax() {
+        mouseX += (targetX - mouseX) * 0.08;
+        mouseY += (targetY - mouseY) * 0.08;
+
+        if (heroPortrait) {
+          heroPortrait.style.transform = `translateX(${mouseX * -18}px) translateY(${mouseY * -12}px) scale(1.01)`;
+        }
+        if (giantName1) {
+          giantName1.style.transform = `translateX(${mouseX * 25}px) translateY(${mouseY * 15}px)`;
+        }
+        if (giantName2) {
+          giantName2.style.transform = `translateX(${mouseX * -20}px) translateY(${mouseY * 18}px)`;
+        }
+
+        requestAnimationFrame(updateHeroParallax);
+      }
+      updateHeroParallax();
+    }
+
+    // ------------------------------------------
+    // 3D Card Hover & Specular Reflection
+    // ------------------------------------------
+    document.querySelectorAll('.card-3d-wrap').forEach(wrap => {
+      const inner = wrap.querySelector('.card-3d-inner');
+      if (!inner) return;
+
+      wrap.addEventListener('mousemove', (e) => {
+        if (prefersReducedMotion || window.innerWidth < 768) return;
+        const rect = wrap.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -9;
+        const rotateY = ((x - centerX) / centerX) * 9;
+
+        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        wrap.style.setProperty('--mouse-x', `${x}px`);
+        wrap.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      wrap.addEventListener('mouseleave', () => {
+        inner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+
+    // ------------------------------------------
+    // Magnetic Effect on Primary Buttons
+    // ------------------------------------------
+    document.querySelectorAll('.btn-magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        if (prefersReducedMotion || window.innerWidth < 768) return;
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    // ------------------------------------------
+    // GSAP ScrollTrigger & Entrance Animations
+    // ------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entrance timeline
+        const tl = gsap.timeline();
+        tl.from('#main-nav', { y: -50, opacity: 0, duration: 1, ease: 'power3.out' })
+          .from('#hero-left-col > *', { y: 30, opacity: 0, stagger: 0.12, duration: 0.9, ease: 'power3.out' }, '-=0.6')
+          .from('#hero-portrait', { scale: 0.92, opacity: 0, duration: 1.2, ease: 'power3.out' }, '-=1')
+          .from('#hero-right-col > *', { x: 30, opacity: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out' }, '-=0.8');
+
+        // Scroll reveals for sections
+        gsap.utils.toArray('section:not(#hero)').forEach(sec => {
+          gsap.from(sec.querySelectorAll('.glass-panel, h2, .project-card'), {
+            scrollTrigger: {
+              trigger: sec,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power2.out'
+          });
+        });
+      }
+    });
+
+    // ------------------------------------------
+    // Mobile Drawer Menu
+    // ------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        closeMobileMenu();
+      }
+      lucide.createIcons();
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      menuIcon.setAttribute('data-lucide', 'menu');
+      lucide.createIcons();
+    }
+
+    // Back to top visibility
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTop.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        backToTop.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+
+    // ------------------------------------------
+    // Project Filtering Logic
+    // ------------------------------------------
+    function filterProjects(category, btn) {
+      playClickSound();
+      document.querySelectorAll('.project-filter-btn').forEach(b => {
+        b.classList.remove('bg-neon-red', 'text-white', 'font-bold');
+        b.classList.add('text-slate-400');
+      });
+      btn.classList.add('bg-neon-red', 'text-white', 'font-bold');
+      btn.classList.remove('text-slate-400');
+
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (category === 'all' || cat === category) {
+          card.style.display = 'block';
+          if (typeof gsap !== 'undefined') {
+            gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+          }
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ------------------------------------------
+    // Project Modal Dialog
+    // ------------------------------------------
+    const projectModal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    const modalTags = document.getElementById('modal-tags');
+    const modalImpact = document.getElementById('modal-impact');
+
+    function openProjectModal(title, desc, tags, impact) {
+      playClickSound();
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalImpact.textContent = impact;
+      modalTags.innerHTML = '';
+      tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'px-3 py-1 rounded-md bg-white/5 text-xs font-mono text-slate-300 border border-white/10';
+        span.textContent = t;
+        modalTags.appendChild(span);
+      });
+
+      projectModal.classList.remove('hidden');
+      setTimeout(() => {
+        projectModal.classList.remove('opacity-0');
+        document.getElementById('project-modal-card').classList.remove('scale-95');
+      }, 10);
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.add('opacity-0');
+      document.getElementById('project-modal-card').classList.add('scale-95');
+      setTimeout(() => {
+        projectModal.classList.add('hidden');
+      }, 300);
+    }
+
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        closeProjectModal();
+      }
+    });
+
+    // ------------------------------------------
+    // Interactive Prompt Playground Logic
+    // ------------------------------------------
+    const promptsData = {
+      1: `Bertindak sebagai Pakar Pedagogi Sains Komputer Malaysia. 
+
+Sediakan satu Rancangan Pengajaran Harian (RPH) bagi topik [Topik: Cth. Algoritma Carian Linear] untuk pelajar Tingkatan 4 Sains Komputer MRSM.
+
+Kriteria RPH mestilah mengandungi:
+1. Standard Kandungan & Pembelajaran mengikut DSKP.
+2. Aktiviti 'Unplugged' (tanpa komputer) selama 20 minit untuk pemahaman konsep.
+3. Aktiviti pengaturcaraan hands-on dalam Python selama 30 minit.
+4. Pentaksiran formatif pantas (3 soalan semakan kefahaman).
+5. Elemen pembezaan murid (pemulihan dan pengayaan).`,
+
+      2: `Tulis satu skrip Google Apps Script (Code.gs) dan antaramuka HTML yang selamat untuk sistem tempahan bilik sekolah.
+
+Keperluan:
+1. Fungsi doGet() memaparkan borang tempahan dengan Tailwind CSS.
+2. Fungsi simpanTempahan(data) yang menulis rekod ke Google Sheets secara automatik.
+3. Semakan pertindihan tarikh dan masa sebelum kelulusan tempahan.
+4. Menghantar emel pengesahan automatik kepada pemohon menggunakan MailApp.sendEmail().`,
+
+      3: `Bina satu set soalan pentaksiran Sains Komputer (Aras KBAT) mengenai konsep Struktur Kawalan Ulangan (Loops) dalam Python.
+
+Keperluan:
+1. Sediakan satu senario masalah dunia nyata di MRSM (contohnya: sistem pengiraan kupon makanan kafeteria).
+2. Murid diminta melakar carta alir dan menulis kod sumber Python yang efisien.
+3. Sediakan skema pemarkahan analitikal yang jelas berserta kriteria rubrik teknikal.`
+    };
+
+    function loadPromptSample(id) {
+      playClickSound();
+      const text = promptsData[id];
+      if (text) {
+        document.getElementById('prompt-text').textContent = text;
+        
+        // Highlight active button
+        document.querySelectorAll('.preset-btn').forEach((btn, idx) => {
+          if (idx + 1 === id) {
+            btn.className = 'preset-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-neon-red text-white font-semibold transition-all';
+          } else {
+            btn.className = 'preset-btn px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 transition-all';
+          }
+        });
+      }
+    }
+
+    function copyPromptToClipboard() {
+      playClickSound();
+      const text = document.getElementById('prompt-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const badge = document.getElementById('copy-success-badge');
+        badge.classList.remove('hidden');
+        document.getElementById('copy-btn-text').textContent = 'Telah Disalin!';
+        setTimeout(() => {
+          badge.classList.add('hidden');
+          document.getElementById('copy-btn-text').textContent = 'Salin Prompt Ini';
+        }, 3000);
+      });
+    }
+
+    // ------------------------------------------
+    // Contact Form Handler
+    // ------------------------------------------
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      playClickSound();
+
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const submitIcon = document.getElementById('submit-icon');
+      const successAlert = document.getElementById('form-success-alert');
+
+      // Loading state
+      btnText.textContent = 'MENGHANTAR...';
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-75');
+
+      setTimeout(() => {
+        btnText.textContent = 'MESEJ BERJAYA DIHANTAR!';
+        submitBtn.classList.remove('bg-neon-red', 'hover:bg-neon-crimson');
+        submitBtn.classList.add('bg-emerald-600');
+        successAlert.classList.remove('hidden');
+
+        // Reset form inputs
+        document.getElementById('contact-form').reset();
+
+        setTimeout(() => {
+          btnText.textContent = 'HANTAR MESEJ RASMI';
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-75', 'bg-emerald-600');
+          submitBtn.classList.add('bg-neon-red', 'hover:bg-neon-crimson');
+        }, 5000);
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
